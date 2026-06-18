@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Domain.Interfaces
+namespace InnoClinic.Application.Features.Users.Queries.SignUp
 {
-    public interface IEmailService
+    internal class SignUpRequest
     {
-        Task SendConfirmationEmailAsync(string email);
     }
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace InnoClinic.Domain.Interfaces
 {
-    internal class IIdentityService
+    public interface  IIdentityService
     {
+        Task<bool> IsEmailUniqueAsync(string email);
+
+        Task<(bool IsSuccess,string? UserId, string[]? Errors)> CreateUserAsync(string email, string password);
     }
 }
