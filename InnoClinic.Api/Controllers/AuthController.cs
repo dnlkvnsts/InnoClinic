@@ -16,15 +16,18 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> SignUp(
         [FromBody] SignUpRequest request,
         [FromServices] IValidator<SignUpRequest> validator,
-        [FromServices] IIdentityService identityService)
+        [FromServices] IIdentityService identityService,
+        [FromServices] IEmailService emailService)
     {
         var validationResult = await validator.ValidateAsync(request);
-        if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+        if (!validationResult.IsValid) return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
 
         var result = await identityService.CreateUserAsync(request.Email, request.Password);
         if(!result.IsSuccess) return BadRequest(result.Errors);
 
-        return Ok("Registration successuful!!!Confirmation email sent(simulated)");
+        await emailService.SendConfirmationEmailAsync(request.Email);
+
+        return Ok("Registration successuful!!!Confirmation email sent");
     }
 
 }
