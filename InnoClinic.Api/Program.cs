@@ -1,4 +1,30 @@
+using FluentValidation;
+using InnoClinic.Application.Validators;
+using InnoClinic.Domain.Interfaces;
+using InnoClinic.Infrastructure.Persistence;
+using InnoClinic.Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddScoped<IIdentityService, IdentityService>();
+
+builder.Services.AddValidatorsFromAssemblyContaining<SignUpValidator>();
+
+
+
+
+
 
 // Add services to the container.
 
