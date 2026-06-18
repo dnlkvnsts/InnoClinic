@@ -14,10 +14,10 @@ namespace InnoClinic.Application.Validators
         public SignUpValidator(IIdentityService identityService)
         {
             RuleFor(x => x.Email)
-                .NotEmpty().WithMessage("Please,enter the email")
-                .EmailAddress().WithMessage("Please,enter the correct form of email")
+                .NotEmpty().WithMessage("Please, enter the email")
+                .EmailAddress().WithMessage("You've entered an invalid email")
                 .MustAsync(async (email, _) => await identityService.IsEmailUniqueAsync(email))
-                .WithMessage("The user with this email has already existeed");
+                .WithMessage("User with this email already exists");
 
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Please,enter the password")
@@ -25,7 +25,7 @@ namespace InnoClinic.Application.Validators
 
             RuleFor(x => x.ReEnteredPassword)
                 .NotEmpty().WithMessage("Please, reenter the password")
-                .Equal(x => x.Password).WithMessage("The passwords you have been entered dont coincide");
+                .Equal(x => x.Password).WithMessage("The passwords you’ve entered don’t coincide");
         }
     }
 }

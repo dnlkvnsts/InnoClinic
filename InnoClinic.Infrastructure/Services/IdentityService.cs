@@ -15,7 +15,7 @@ namespace InnoClinic.Infrastructure.Services
         public IdentityService(UserManager<IdentityUser> userManager) => _userManager = userManager;
 
 
-        public async Task<bool> IsEmailUniqueAsync(string email) => _userManager.FindByEmailAsync(email) == null ;
+        public async Task<bool> IsEmailUniqueAsync(string email) =>  await _userManager.FindByEmailAsync(email) == null ;
 
 
         public async Task<(bool IsSuccess, string? UserId, string[]? Errors)> CreateUserAsync(string email, string password)
