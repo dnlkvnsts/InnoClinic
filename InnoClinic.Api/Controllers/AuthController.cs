@@ -1,6 +1,30 @@
-﻿namespace InnoClinic.Api.Controllers
+﻿using FluentValidation;
+using InnoClinic.Application.Features.Users.Queries.SignUp;
+using InnoClinic.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace InnoClinic.Api.Controllers;
+
+
+[ApiController]
+[Route("api/[controller]")]
+public class AuthController : ControllerBase
 {
-    public class AuthController
+    
+    [HttpPost("signup")]
+
+    public async Task<IActionResult> SignUp(
+        [FromBody] SignUpRequest request,
+        [FromServices] IValidator<SignUpRequest> validator,
+        [FromServices] IIdentityService identityService)
     {
+        var validationResult = await validator.ValidateAsync(request);
+        if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+
+        var result = await identityService.CreateUserAsync(request.Email, request.Password);
+        if(!result.IsSuccess) return BadRequest(result.Errors);
+
+        return Ok("Registration successuful!!!Confirmation email sent(simulated)");
     }
+
 }

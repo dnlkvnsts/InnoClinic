@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InnoClinic.Application.Features.Users.Queries.SignUp
 {
-    internal class SignUpRequest
+    public record SignUpRequest(string Email, string Password, string ReEnteredPassword)
     {
     }
 }
