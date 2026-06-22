@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 namespace InnoClinic.Application.Features.Users.Commands.SignIn
 {
-    public record SignInCommand(string email, string password) : IRequest<string>;
+    public record SignInCommand(string Email, string Password) : IRequest<string>;
    
 }

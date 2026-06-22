@@ -45,5 +45,12 @@ namespace InnoClinic.Infrastructure.Services
 
             return (true, user.Id);
         }
+
+
+        public async Task<bool> UserExistsAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            return user != null; 
+        }
     }
 }
