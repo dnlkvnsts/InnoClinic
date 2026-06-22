@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InnoClinic.Application.Validators
 {
-    public  class SignUpValidator : AbstractValidator<SignUpRequest>
+    public  class SignUpValidator : AbstractValidator<SignUpCommand>
     {
         public SignUpValidator(IIdentityService identityService)
         {
