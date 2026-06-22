@@ -1,4 +1,5 @@
 using FluentValidation;
+using InnoClinic.Application.Features.Users.Commands.SignUp;
 using InnoClinic.Application.Validators;
 using InnoClinic.Domain.Interfaces;
 using InnoClinic.Infrastructure.Persistence;
@@ -39,6 +40,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(SignUpCommand).Assembly);
+});
 
 var app = builder.Build();
 
