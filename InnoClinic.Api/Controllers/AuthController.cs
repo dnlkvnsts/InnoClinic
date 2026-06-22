@@ -3,6 +3,7 @@ using InnoClinic.Application.Features.Users.Commands.SignIn;
 using InnoClinic.Application.Features.Users.Commands.SignUp;
 using InnoClinic.Application.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnoClinic.Api.Controllers;
@@ -21,6 +22,7 @@ public class AuthController : ControllerBase
 
     
     [HttpPost("signup")]
+    
     public async Task<IActionResult> SignUp([FromBody] SignUpCommand request)
     {
 
@@ -43,20 +45,18 @@ public class AuthController : ControllerBase
         {
             var token = await _mediator.Send(request);
 
-            return Ok(new { Token = token, Message = "You've signed in successfully" });
+            return Ok(new { Token = token });
 
 
         }
-        catch (Exception) 
+        catch (Exception ex) 
         {
-            return BadRequest(new
-            {
-                Message = "Either an email or a password is incorrect"
-            });
+            return BadRequest(new { Message = ex.Message});
 
         }
     }
 
+   
 
 
 

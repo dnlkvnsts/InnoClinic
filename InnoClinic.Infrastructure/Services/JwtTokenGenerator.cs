@@ -31,7 +31,7 @@ namespace InnoClinic.Infrastructure.Services
             };
 
 
-            var keyStr = _configuration["JwtSettings:Key"];
+            var keyStr = _configuration["Jwt:Key"];
             if (string.IsNullOrEmpty(keyStr))
                 throw new Exception("JWT Key is not configured.");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyStr));
@@ -42,13 +42,13 @@ namespace InnoClinic.Infrastructure.Services
 
 
 
-            var expiresMinutes = Convert.ToDouble(_configuration["JwtSettings:DurationInMinutes"] ?? "60");
+            var expiresMinutes = Convert.ToDouble(_configuration["Jwt:ExpiryMinutes"] ?? "60");
             var expires = DateTime.UtcNow.AddMinutes(expiresMinutes);
 
 
             var token = new JwtSecurityToken(
-                issuer: _configuration["JwtSettings:Issuer"],
-                audience: _configuration["JwtSettings:Audience"],
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
                 claims: claims,
                 expires: expires,
                 signingCredentials: creds
@@ -57,8 +57,6 @@ namespace InnoClinic.Infrastructure.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
 
 
     }

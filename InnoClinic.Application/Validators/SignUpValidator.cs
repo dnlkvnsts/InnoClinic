@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using InnoClinic.Application.Features.Users.Commands.SignUp;
-using InnoClinic.Domain.Interfaces;
+using InnoClinic.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
