@@ -1,4 +1,6 @@
+using InnoClinic.Profiles.Application.Interfaces;
 using InnoClinic.Profiles.Infrastructure.Persistence;
+using InnoClinic.Profiles.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ProfilesDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("ProfilesConnection")));
+
+
+
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 
 // Add services to the container.
 
