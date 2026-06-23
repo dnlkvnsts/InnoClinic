@@ -1,7 +1,9 @@
+using InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors;
 using InnoClinic.Profiles.Application.Interfaces;
 using InnoClinic.Profiles.Infrastructure.Persistence;
 using InnoClinic.Profiles.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
+
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(GetDoctorsQuery).Assembly);
+
+});
 
 var app = builder.Build();
 
