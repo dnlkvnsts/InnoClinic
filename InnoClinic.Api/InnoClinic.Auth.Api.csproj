@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InnoClinic.Application\InnoClinic.Application.csproj" />
-    <ProjectReference Include="..\InnoClinic.Infrastructure\InnoClinic.Infrastructure.csproj" />
+    <ProjectReference Include="..\InnoClinic.Application\InnoClinic.Auth.Application.csproj" />
+    <ProjectReference Include="..\InnoClinic.Infrastructure\InnoClinic.Auth.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
