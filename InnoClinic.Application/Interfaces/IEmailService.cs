@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Domain.Interfaces
+namespace InnoClinic.Application.Interfaces
 {
     public interface IEmailService
     {

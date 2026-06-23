@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using InnoClinic.Application.Validators;
-using InnoClinic.Domain.Interfaces;
+using InnoClinic.Application.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
