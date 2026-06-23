@@ -13,6 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Auth.Api", "Inno
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authorization", "Authorization", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Profiles", "Profiles", "{315B24E9-EB86-4EBA-A133-CC383A604F00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Profiles.Api", "InnoClinic.Profiles.Api\InnoClinic.Profiles.Api.csproj", "{78BEAD38-0EE2-46E5-886B-6A87AA1C5083}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Profiles.Domain", "InnoClinic.Profiles.Domain\InnoClinic.Profiles.Domain.csproj", "{154B29F2-F22B-4CC2-92FA-EFD363EF9773}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Profiles.Infrastructure", "InnoClinic.Profiles.Infrastructure\InnoClinic.Profiles.Infrastructure.csproj", "{2666FC81-326E-4BC3-9769-A58C77847EFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Profiles.Application", "InnoClinic.Profiles.Application\InnoClinic.Profiles.Application.csproj", "{96B4A07A-0097-4E53-BD57-30DD3EA1D858}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +45,22 @@ Global
 		{96165D2C-0CB8-4516-A381-04E1B0C342DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96165D2C-0CB8-4516-A381-04E1B0C342DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96165D2C-0CB8-4516-A381-04E1B0C342DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78BEAD38-0EE2-46E5-886B-6A87AA1C5083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78BEAD38-0EE2-46E5-886B-6A87AA1C5083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78BEAD38-0EE2-46E5-886B-6A87AA1C5083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78BEAD38-0EE2-46E5-886B-6A87AA1C5083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{154B29F2-F22B-4CC2-92FA-EFD363EF9773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{154B29F2-F22B-4CC2-92FA-EFD363EF9773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{154B29F2-F22B-4CC2-92FA-EFD363EF9773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{154B29F2-F22B-4CC2-92FA-EFD363EF9773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2666FC81-326E-4BC3-9769-A58C77847EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2666FC81-326E-4BC3-9769-A58C77847EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2666FC81-326E-4BC3-9769-A58C77847EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2666FC81-326E-4BC3-9769-A58C77847EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B4A07A-0097-4E53-BD57-30DD3EA1D858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B4A07A-0097-4E53-BD57-30DD3EA1D858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B4A07A-0097-4E53-BD57-30DD3EA1D858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B4A07A-0097-4E53-BD57-30DD3EA1D858}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +70,10 @@ Global
 		{9D94AEC6-A838-47DE-98CC-DA65FB58DE93} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{8514E145-20B1-4E19-A09D-DC83EEB4B5C5} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{96165D2C-0CB8-4516-A381-04E1B0C342DA} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{78BEAD38-0EE2-46E5-886B-6A87AA1C5083} = {315B24E9-EB86-4EBA-A133-CC383A604F00}
+		{154B29F2-F22B-4CC2-92FA-EFD363EF9773} = {315B24E9-EB86-4EBA-A133-CC383A604F00}
+		{2666FC81-326E-4BC3-9769-A58C77847EFB} = {315B24E9-EB86-4EBA-A133-CC383A604F00}
+		{96B4A07A-0097-4E53-BD57-30DD3EA1D858} = {315B24E9-EB86-4EBA-A133-CC383A604F00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8917D5F6-5471-41F8-B9C3-C46AA5A0F5E7}

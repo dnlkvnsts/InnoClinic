@@ -1,4 +1,13 @@
+using InnoClinic.Profiles.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+
+builder.Services.AddDbContext<ProfilesDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("ProfilesConnection")));
 
 // Add services to the container.
 

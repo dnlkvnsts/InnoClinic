@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InnoClinic.Profiles.Domain\InnoClinic.Profiles.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
