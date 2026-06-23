@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using InnoClinic.Application.Features.Users.Commands.SignIn;
+using InnoClinic.Application.Features.Users.Commands.SignOut;
 using InnoClinic.Application.Features.Users.Commands.SignUp;
 using InnoClinic.Application.Interfaces;
 using MediatR;
@@ -53,6 +54,21 @@ public class AuthController : ControllerBase
         {
             return BadRequest(new { Message = ex.Message});
 
+        }
+    }
+
+    [Authorize]
+    [HttpPost("signout")]
+    public async Task<IActionResult> SignOut()
+    {
+        try
+        {
+            await _mediator.Send(new SignOutCommand());
+            return Ok(new { Message = "Logged out successfully. Please delete the token on the client side." });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { Message = ex.Message });
         }
     }
 
