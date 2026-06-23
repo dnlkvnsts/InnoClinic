@@ -1,4 +1,5 @@
 using FluentValidation;
+using InnoClinic.Application.Behaviors;
 using InnoClinic.Application.Features.Users.Commands.SignUp;
 using InnoClinic.Application.Interfaces;
 using InnoClinic.Application.Validators;
@@ -33,11 +34,6 @@ builder.Services.AddScoped<IIdentityService, IdentityService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<SignUpValidator>();
-
-
-
-
-
 
 
 
@@ -107,6 +103,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(SignUpCommand).Assembly);
+
+    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
 });
 
 var app = builder.Build();
