@@ -10,4 +10,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InnoClinic.Services.Application\InnoClinic.Services.Application.csproj" />
+    <ProjectReference Include="..\InnoClinic.Services.Infrastructure\InnoClinic.Services.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

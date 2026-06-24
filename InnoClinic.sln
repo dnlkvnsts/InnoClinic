@@ -23,6 +23,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Profiles.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Profiles.Application", "InnoClinic.Profiles.Application\InnoClinic.Profiles.Application.csproj", "{96B4A07A-0097-4E53-BD57-30DD3EA1D858}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E7887B10-0FEA-4BF8-AEC2-CB6A1A9846AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Services.Api", "InnoClinic.Services.Api\InnoClinic.Services.Api.csproj", "{662BF5A5-E636-4058-B078-88A18BC34DBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Services.Domain", "InnoClinic.Services.Domain\InnoClinic.Services.Domain.csproj", "{6E895A9E-B5E8-4FA5-A22E-A8ECA1007AB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Services.Application", "InnoClinic.Services.Application\InnoClinic.Services.Application.csproj", "{ADA854DF-2808-46F1-93EC-886F82E39E96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Services.Infrastructure", "InnoClinic.Services.Infrastructure\InnoClinic.Services.Infrastructure.csproj", "{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +71,22 @@ Global
 		{96B4A07A-0097-4E53-BD57-30DD3EA1D858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96B4A07A-0097-4E53-BD57-30DD3EA1D858}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96B4A07A-0097-4E53-BD57-30DD3EA1D858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662BF5A5-E636-4058-B078-88A18BC34DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662BF5A5-E636-4058-B078-88A18BC34DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662BF5A5-E636-4058-B078-88A18BC34DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662BF5A5-E636-4058-B078-88A18BC34DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E895A9E-B5E8-4FA5-A22E-A8ECA1007AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E895A9E-B5E8-4FA5-A22E-A8ECA1007AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E895A9E-B5E8-4FA5-A22E-A8ECA1007AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E895A9E-B5E8-4FA5-A22E-A8ECA1007AB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA854DF-2808-46F1-93EC-886F82E39E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA854DF-2808-46F1-93EC-886F82E39E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA854DF-2808-46F1-93EC-886F82E39E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA854DF-2808-46F1-93EC-886F82E39E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +100,10 @@ Global
 		{154B29F2-F22B-4CC2-92FA-EFD363EF9773} = {315B24E9-EB86-4EBA-A133-CC383A604F00}
 		{2666FC81-326E-4BC3-9769-A58C77847EFB} = {315B24E9-EB86-4EBA-A133-CC383A604F00}
 		{96B4A07A-0097-4E53-BD57-30DD3EA1D858} = {315B24E9-EB86-4EBA-A133-CC383A604F00}
+		{662BF5A5-E636-4058-B078-88A18BC34DBB} = {E7887B10-0FEA-4BF8-AEC2-CB6A1A9846AA}
+		{6E895A9E-B5E8-4FA5-A22E-A8ECA1007AB3} = {E7887B10-0FEA-4BF8-AEC2-CB6A1A9846AA}
+		{ADA854DF-2808-46F1-93EC-886F82E39E96} = {E7887B10-0FEA-4BF8-AEC2-CB6A1A9846AA}
+		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B} = {E7887B10-0FEA-4BF8-AEC2-CB6A1A9846AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8917D5F6-5471-41F8-B9C3-C46AA5A0F5E7}
