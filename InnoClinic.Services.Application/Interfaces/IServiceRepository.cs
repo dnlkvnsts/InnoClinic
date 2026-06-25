@@ -9,6 +9,6 @@ namespace InnoClinic.Services.Application.Interfaces
 {
     public  interface  IServiceRepository
     {
-        IQueryable<Service> GetServicesQuery();
+        Task<List<Service>> GetServicesAsync(CancellationToken cancellationToken);
     }
 }
