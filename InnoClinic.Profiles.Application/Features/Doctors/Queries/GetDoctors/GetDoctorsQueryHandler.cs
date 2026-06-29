@@ -1,7 +1,7 @@
 ﻿using InnoClinic.Profiles.Application.DTOs;
 using InnoClinic.Profiles.Application.Interfaces;
 using MediatR;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
             var currentYear = System.DateTime.UtcNow.Year;
 
 
-            var result = query.Select(d => new DoctorDto(
+            var result = await query.Select(d => new DoctorDto(
                     d.PhotoUrl,
                     d.FirstName,
                     d.LastName,
@@ -39,9 +39,9 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     d.Specialization.SpecializationName,
                     currentYear - d.CareerStartYear + 1,
                     d.OfficeAddress
-                )).ToList();
+                )).ToListAsync(cancellationToken);
 
-            return await Task.FromResult(result);
+            return result;
         }
 
 
