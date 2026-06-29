@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 
 
 
+namespace InnoClinic.Profiles.Application.Consumers
+
 namespace InnoClinic.Profiles.Infrastructure.Consumers
 {
     public  class SpecializationCreatedConsumer : IConsumer<SpecializationCreated>
