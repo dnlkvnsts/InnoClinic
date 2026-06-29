@@ -4,6 +4,7 @@ using InnoClinic.Profiles.Infrastructure.Persistence;
 using MassTransit;
 
 
+
 namespace InnoClinic.Profiles.Application.Consumers
 {
     public  class SpecializationCreatedConsumer : IConsumer<SpecializationCreated>
