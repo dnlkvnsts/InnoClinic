@@ -15,6 +15,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("ServicesConnecti
 
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 
+builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
 
 
 // Add services to the container.
