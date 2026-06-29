@@ -2,9 +2,11 @@
 using InnoClinic.Profiles.Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-
-using MassTransit;
-using InnoClinic.Appointments.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
 {
@@ -49,7 +51,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     d.Specialization.SpecializationName,
                     currentYear - d.CareerStartYear + 1,
                     d.OfficeAddress
-                )).ToList();
+                )).ToListAsync(cancellationToken);
 
             return result;
         }
