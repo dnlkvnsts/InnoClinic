@@ -1,4 +1,5 @@
-﻿using InnoClinic.Profiles.Domain.Entities;
+﻿using InnoClinic.Profiles.Application.Contracts;
+using InnoClinic.Profiles.Domain.Entities;
 using InnoClinic.Profiles.Infrastructure.Persistence;
 using InnoClinic.Shared.Contracts;
 using MassTransit;
@@ -14,7 +15,7 @@ namespace InnoClinic.Profiles.Infrastructure.Consumers
         private readonly ProfilesDbContext _context;
         private readonly ILogger<SpecializationCreatedConsumer> _logger;
 
-        public SpecializationCreatedConsumer(ProfilesDbContext context, ILogger<SpecializationCreatedConsumer> logger)
+        public SpecializationCreatedConsumer(ProfilesDbContext context)
         {
             _context = context;
             _logger = logger;
