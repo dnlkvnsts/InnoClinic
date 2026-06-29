@@ -35,7 +35,8 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     d.FirstName,
                     d.LastName,
                     d.MiddleName,
-                    d.Specialization,
+                    d.SpecializationId,
+                    d.Specialization.SpecializationName,
                     currentYear - d.CareerStartYear + 1,
                     d.OfficeAddress
                 )).ToList();

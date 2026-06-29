@@ -26,7 +26,5 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
         }
 
 
-
-
     }
 }
