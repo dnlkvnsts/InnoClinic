@@ -12,8 +12,7 @@ namespace InnoClinic.Profiles.Application.DTOs
         string FirstName,
         string LastName,
         string? MiddleName,
-        Guid SpecializationId,
-        string SpecializationName,
+        Specialization Specialization,
         int ExperienceYears, 
         string OfficeAddress
     );
