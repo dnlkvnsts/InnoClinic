@@ -22,10 +22,8 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
 
         public IQueryable<Doctor> GetDoctorsQuery()
         {
-            return _context.Doctors.AsNoTracking();
+            return _context.Doctors.Include(d => d.Specialization).AsNoTracking();
         }
-
-
 
 
     }
