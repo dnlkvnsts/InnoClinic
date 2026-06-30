@@ -25,7 +25,7 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
             var doctors =  _context.Doctors.Include(d => d.Specialization).AsNoTracking();
 
 
-            doctors = doctors.Where(d => d.Status == "IsActive");
+            doctors = doctors.Where(d => d.Status == "At work");
 
 
 
