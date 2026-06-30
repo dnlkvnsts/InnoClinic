@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\InnoClinic.Profiles.Application\InnoClinic.Profiles.Application.csproj" />
     <ProjectReference Include="..\InnoClinic.Profiles.Infrastructure\InnoClinic.Profiles.Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>
