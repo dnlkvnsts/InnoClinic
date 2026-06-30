@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InnoClinic.Profiles.Infrastructure.Migrations
 {
     [DbContext(typeof(ProfilesDbContext))]
-    [Migration("20260629124811_AddSpecializationsTableInProfiles")]
-    partial class AddSpecializationsTableInProfiles
+    [Migration("20260630140121_SeedDoctorsData")]
+    partial class SeedDoctorsData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,48 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                     b.HasIndex("SpecializationId");
 
                     b.ToTable("Doctors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aa11aa11-1111-1111-1111-111111111111"),
+                            AccountId = new Guid("d45cb46b-13f7-452f-820c-83220f87900d"),
+                            CareerStartYear = 2010,
+                            DateOfBirth = new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Иван",
+                            LastName = "Иванов",
+                            MiddleName = "Сергеевич",
+                            OfficeAddress = "г. Минск, каб. 301",
+                            PhotoUrl = "https://example.com/photos/ivanov.jpg",
+                            SpecializationId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Status = "At work"
+                        },
+                        new
+                        {
+                            Id = new Guid("bb22bb22-2222-2222-2222-222222222222"),
+                            AccountId = new Guid("5f3ecf97-bafc-48bb-a8f3-d0a7e117b0fd"),
+                            CareerStartYear = 2018,
+                            DateOfBirth = new DateTime(1990, 8, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Алексей",
+                            LastName = "Петров",
+                            MiddleName = "Николаевич",
+                            OfficeAddress = "г. Минск, каб. 405",
+                            SpecializationId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Status = "At work"
+                        },
+                        new
+                        {
+                            Id = new Guid("cc33cc33-3333-3333-3333-333333333333"),
+                            AccountId = new Guid("2e531410-e543-4f30-93ed-741cc6ab4947"),
+                            CareerStartYear = 2005,
+                            DateOfBirth = new DateTime(1978, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ольга",
+                            LastName = "Иванова",
+                            MiddleName = "Михайловна",
+                            OfficeAddress = "г. Минск, каб. 302",
+                            SpecializationId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Status = "On vacation"
+                        });
                 });
 
             modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Specialization", b =>
@@ -88,6 +130,20 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Specializations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            IsActive = true,
+                            SpecializationName = "Терапевт"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            IsActive = true,
+                            SpecializationName = "Хирург"
+                        });
                 });
 
             modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Doctor", b =>

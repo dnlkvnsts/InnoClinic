@@ -20,9 +20,8 @@ namespace InnoClinic.Profiles.Api.Controllers
         [HttpGet]
 
 
-        public async Task<IActionResult> GetDoctors()
+        public async Task<IActionResult> GetDoctors([FromQuery] GetDoctorsQuery query)
         {
-            var query = new GetDoctorsQuery();
             var doctors = await _mediator.Send(query);
 
             return Ok(doctors);
