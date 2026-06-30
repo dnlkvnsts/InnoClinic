@@ -9,7 +9,7 @@ namespace InnoClinic.Profiles.Application.Interfaces
 {
     public interface IDoctorRepository
     {
-        Task<List<Doctor>> GetDoctorsAsync(string? fullName, Guid specializationId, CancellationToken cancellationToken);
+        Task<List<Doctor>> GetDoctorsAsync(string? fullName, Guid? specializationId, CancellationToken cancellationToken);
 
     }
 }

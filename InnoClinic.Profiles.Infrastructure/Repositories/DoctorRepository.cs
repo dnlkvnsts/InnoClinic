@@ -20,11 +20,34 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
         }
 
 
-        public IQueryable<Doctor> GetDoctorsQuery()
+        public async Task<List<Doctor>> GetDoctorsAsync(string? fullName, Guid? specializationId, CancellationToken cancellationToken)
         {
-            return _context.Doctors.Include(d => d.Specialization).AsNoTracking();
-        }
+            var doctors =  _context.Doctors.Include(d => d.Specialization).AsNoTracking();
 
+
+            doctors = doctors.Where(d => d.Status == "IsActive");
+
+
+
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                var searchTerm = fullName.Trim().ToLower();
+                doctors = doctors.Where(
+                    d => d.FirstName.ToLower().Contains(searchTerm) ||
+                    d.LastName.ToLower().Contains(searchTerm) ||
+                    (d.MiddleName != null && d.LastName.ToLower().Contains(searchTerm))
+
+                    );
+            }
+
+            if (specializationId.HasValue)
+            {
+                doctors = doctors.Where(d => d.SpecializationId == specializationId);
+            }
+
+            return await  doctors.ToListAsync(cancellationToken);
+
+        }
 
     }
 }
