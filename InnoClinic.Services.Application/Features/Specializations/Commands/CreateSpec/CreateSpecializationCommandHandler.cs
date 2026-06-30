@@ -1,4 +1,4 @@
-﻿using InnoClinic.Services.Application.Contracts;
+﻿using InnoClinic.Shared.Contracts;
 using InnoClinic.Services.Application.Interfaces;
 using InnoClinic.Services.Domain.Entities;
 using MassTransit;
