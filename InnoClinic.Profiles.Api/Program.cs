@@ -1,5 +1,5 @@
 using InnoClinic.Profiles.Application.Consumers;
-using InnoClinic.Profiles.Application.Contracts;
+using InnoClinic.Shared.Contracts;
 using InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors;
 using InnoClinic.Profiles.Application.Interfaces;
 using InnoClinic.Profiles.Infrastructure.Persistence;
