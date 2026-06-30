@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InnoClinic.Profiles.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ namespace InnoClinic.Profiles.Application.DTOs
         string FirstName,
         string LastName,
         string? MiddleName,
-        string Specialization,
+        Guid SpecializationId,
+        string SpecializationName,
         int ExperienceYears, 
         string OfficeAddress
     );

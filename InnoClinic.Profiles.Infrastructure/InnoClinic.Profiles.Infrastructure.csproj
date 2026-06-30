@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  <PackageReference Include="MassTransit" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\InnoClinic.Profiles.Application\InnoClinic.Profiles.Application.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

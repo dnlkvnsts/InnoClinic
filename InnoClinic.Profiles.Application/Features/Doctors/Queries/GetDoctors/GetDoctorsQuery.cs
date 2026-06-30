@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
 {
-    public record GetDoctorsQuery(): IRequest<IEnumerable<DoctorDto>>;
+    public  record  GetDoctorsQuery(string? FullName = null, Guid? SpecializationId = null) : IRequest<IEnumerable<DoctorDto>>;
     
 }

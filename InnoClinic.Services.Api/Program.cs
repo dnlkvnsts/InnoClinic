@@ -2,6 +2,7 @@ using InnoClinic.Services.Application.Features.Services.Queries.GetServices;
 using InnoClinic.Services.Application.Interfaces;
 using InnoClinic.Services.Infrastructure.Persistence;
 using InnoClinic.Services.Infrastructure.Repositories;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("ServicesConnecti
 
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 
+builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
 
 
 // Add services to the container.
@@ -32,6 +34,26 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(GetServicesQuery).Assembly);
 
 });
+
+
+
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, sfg) =>
+    {
+        sfg.Host("localhost", "/", h  =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+
+    });
+
+});
+
+
 
 
 
