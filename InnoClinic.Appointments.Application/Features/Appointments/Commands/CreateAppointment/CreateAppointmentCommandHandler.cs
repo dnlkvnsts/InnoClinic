@@ -22,7 +22,7 @@ namespace InnoClinic.Appointments.Application.Features.Appointments.Commands.Cre
         public async Task<Guid> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
         {
             var appointment = new Appointment
-    {
+            {
                 Id = Guid.NewGuid(),
                 PatientId = request.PatientId,
                 DoctorId = request.DoctorId,
