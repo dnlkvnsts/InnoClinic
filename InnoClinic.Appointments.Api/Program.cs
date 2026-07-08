@@ -1,6 +1,18 @@
+using InnoClinic.Appointments.Application.Interfaces;
+using InnoClinic.Appointments.Infrastructure.Persistence;
+using InnoClinic.Appointments.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddDbContext<AppointmentsDbContext>(options =>
+options.UseNpgsql(builder.Configuration.GetConnectionString("AppointmentsConnection")));
+
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
