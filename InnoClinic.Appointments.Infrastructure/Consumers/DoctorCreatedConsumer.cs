@@ -30,6 +30,7 @@ namespace InnoClinic.Appointments.Infrastructure.Consumers
             if (existingDoctor != null) return;
 
 
+
             var doctor = new Doctor
             {
                 Id = message.Id,
@@ -42,6 +43,9 @@ namespace InnoClinic.Appointments.Infrastructure.Consumers
             _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
         }
+
+
+
 
     }
 }
