@@ -26,7 +26,8 @@ namespace InnoClinic.Appointments.Infrastructure.Consumers
         {
             var message = context.Message;
 
-
+            var existingDoctor = await _context.Doctors.FindAsync(message.Id);
+            if (existingDoctor != null) return;
 
 
             var doctor = new Doctor
