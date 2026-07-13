@@ -39,7 +39,7 @@ namespace InnoClinic.Appointments.Infrastructure.Consumers
             };
 
             
-            _context.Doctor.Add(doctor);
+            _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
         }
 
