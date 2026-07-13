@@ -2,35 +2,43 @@
 using InnoClinic.Profiles.Application.Interfaces;
 using MediatR;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using MassTransit;
+using InnoClinic.Appointments.Domain;
 
 namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
 {
     public  class GetDoctorsQueryHandler : IRequestHandler<GetDoctorsQuery, IEnumerable<DoctorDto>>
     {
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
 
 
-        public GetDoctorsQueryHandler(IDoctorRepository doctorRepository)
+        public GetDoctorsQueryHandler(IDoctorRepository doctorRepository, IPublishEndpoint publishEndpoint)
         {
             _doctorRepository = doctorRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
 
         public async Task<IEnumerable<DoctorDto>> Handle(GetDoctorsQuery request, CancellationToken cancellationToken)
         {
-            var query = _doctorRepository.GetDoctorsQuery();
-
-            query = query.Where(d => d.Status == "At work");
+            var doctors = _doctorRepository.GetDoctorsQuery().Where(d => d.Status == "At work").ToList();
 
             var currentYear = System.DateTime.UtcNow.Year;
 
+            foreach (var doctor in doctors)
+            {
+                await _publishEndpoint.Publish(new DoctorCreated(
+                    doctor.Id,
+                    doctor.FirstName,
+                    doctor.LastName,
+                    doctor.MiddleName
+                ), cancellationToken);
+            }
 
-            var result = query.Select(d => new DoctorDto(
+
+            var result = doctors.Select(d => new DoctorDto(
                     d.PhotoUrl,
                     d.FirstName,
                     d.LastName,
@@ -40,10 +48,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     d.OfficeAddress
                 )).ToList();
 
-            return await Task.FromResult(result);
+            return result;
         }
-
-
-
     }
 }
