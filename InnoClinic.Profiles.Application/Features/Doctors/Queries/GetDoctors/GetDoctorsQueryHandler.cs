@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MassTransit;
+using InnoClinic.Appointments.Domain;
 
 namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
 {
@@ -30,7 +32,19 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
           
             var doctors = await _doctorRepository.GetDoctorsAsync(request.FullName, request.SpecializationId, cancellationToken);
           
+            var doctors = _doctorRepository.GetDoctorsQuery().Where(d => d.Status == "At work").ToList();
 
+            var currentYear = System.DateTime.UtcNow.Year;
+
+            foreach (var doctor in doctors)
+            {
+                await _publishEndpoint.Publish(new DoctorCreated(
+                    doctor.Id,
+                    doctor.FirstName,
+                    doctor.LastName,
+                    doctor.MiddleName
+                ), cancellationToken);
+            }
             var currentYear = DateTime.UtcNow.Year;
           
 
