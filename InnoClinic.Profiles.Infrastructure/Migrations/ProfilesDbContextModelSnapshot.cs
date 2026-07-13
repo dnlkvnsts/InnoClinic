@@ -126,6 +126,35 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Doctors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            CareerStartYear = 2015,
+                            FirstName = "John",
+                            LastName = "Doe",
+                            MiddleName = "Robert",
+                            OfficeAddress = "123 Health Ave, Room 101",
+                            PhotoUrl = "https://example.com/photos/johndoe.jpg",
+                            Specialization = "Cardiologist",
+                            Status = "At work",
+                            UserId = "user-guid-1"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            CareerStartYear = 2018,
+                            FirstName = "Alice",
+                            LastName = "Smith",
+                            MiddleName = "Jane",
+                            OfficeAddress = "123 Health Ave, Room 205",
+                            PhotoUrl = "https://example.com/photos/alicesmith.jpg",
+                            Specialization = "Pediatrician",
+                            Status = "At work",
+                            UserId = "user-guid-2"
+                        });
                     b.ToTable("Specializations");
 
                     b.HasData(
