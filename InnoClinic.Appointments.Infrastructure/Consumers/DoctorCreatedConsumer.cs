@@ -43,8 +43,5 @@ namespace InnoClinic.Appointments.Infrastructure.Consumers
             await _context.SaveChangesAsync();
         }
 
-
-
-
     }
 }
