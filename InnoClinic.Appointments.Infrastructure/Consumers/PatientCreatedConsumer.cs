@@ -34,7 +34,7 @@ namespace InnoClinic.Appointments.Infrastructure.Consumers
 
 
             var patient = new Patient
-            {
+    {
                 Id = message.Id,
                 FirstName = message.FirstName,
                 LastName = message.LastName,
