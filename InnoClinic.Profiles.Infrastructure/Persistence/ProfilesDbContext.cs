@@ -16,6 +16,8 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
 
         public DbSet<Doctor> Doctors { get; set; }
 
+        public DbSet<Patient> Patients { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +35,7 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     PhotoUrl = "https://example.com/photos/johndoe.jpg",
                     Specialization = "Cardiologist",
                     CareerStartYear = 2015,
-                    Status = "At work", // Точно совпадает с фильтром!
+                    Status = "At work", 
                     OfficeAddress = "123 Health Ave, Room 101",
                     UserId = "user-guid-1"
                 },
@@ -46,9 +48,36 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     PhotoUrl = "https://example.com/photos/alicesmith.jpg",
                     Specialization = "Pediatrician",
                     CareerStartYear = 2018,
-                    Status = "At work", // Точно совпадает с фильтром!
+                    Status = "At work", 
                     OfficeAddress = "123 Health Ave, Room 205",
                     UserId = "user-guid-2"
+                }
+            );
+
+
+
+
+
+            modelBuilder.Entity<Patient>().HasData(
+                new Patient
+                {
+                    Id = Guid.Parse("33333333-3333-3333-3333-333333333333"),
+                    FirstName = "Emily",
+                    LastName = "Brown",
+                    MiddleName = "Grace",
+                    IsLinkedToAccount = true,
+                    DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, DateTimeKind.Utc),
+                    AccountId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
+                },
+                new Patient
+                {
+                    Id = Guid.Parse("44444444-4444-4444-4444-444444444444"),
+                    FirstName = "James",
+                    LastName = "Wilson",
+                    MiddleName = null, 
+                    IsLinkedToAccount = false,
+                    DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, DateTimeKind.Utc),
+                    AccountId = null 
                 }
             );
 

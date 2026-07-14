@@ -18,6 +18,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("ProfilesConnecti
 
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
