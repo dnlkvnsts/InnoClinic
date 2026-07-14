@@ -16,6 +16,11 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
         public DbSet<Doctor> Doctors { get; set; }
 
         public DbSet<Service> Services { get; set; }
+
+
+        public DbSet<Patient> Patients { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,6 +47,17 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
             });
 
 
+
+            modelBuilder.Entity<Patient>(entity =>
+            {
+                entity.ToTable("Patients");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.MiddleName).HasMaxLength(100);
+            });
+
             modelBuilder.Entity<Appointment>(entity =>
             {
                 entity.ToTable("Appointments");
@@ -65,6 +81,11 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
                 entity.HasOne(a => a.Service)                 
                     .WithMany(s => s.Appointments)             
                     .HasForeignKey(a => a.ServiceId)            
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(a => a.Service)
+                    .WithMany(s => s.Appointments)
+                    .HasForeignKey(a => a.ServiceId)
                     .OnDelete(DeleteBehavior.Restrict);
 
             });
