@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 
+
 namespace InnoClinic.Appointments.Infrastructure.Persistence
 {
     public class AppointmentsDbContext : DbContext
@@ -13,6 +14,8 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
         public DbSet<Appointment> Appointments { get; set; }
 
         public DbSet<Doctor> Doctors { get; set; }
+
+        public DbSet<Service> Services { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -29,6 +32,16 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
             });
 
 
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.ToTable("Services");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.ServiceName).IsRequired().HasMaxLength(150);
+                entity.Property(e => e.Price).HasColumnType("numeric(18,2)").IsRequired();
+            });
+
+
             modelBuilder.Entity<Appointment>(entity =>
             {
                 entity.ToTable("Appointments");
@@ -41,6 +54,19 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
                 entity.Property(e => e.Date).HasColumnType("date").IsRequired();
                 entity.Property(e => e.Time).HasColumnType("time").IsRequired();
                 entity.Property(e => e.IsApproved).IsRequired();
+
+
+                entity.HasOne(a => a.Doctor)
+                    .WithMany(d => d.Appointments)
+                    .HasForeignKey(a => a.DoctorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+
+                entity.HasOne(a => a.Service)                 
+                    .WithMany(s => s.Appointments)             
+                    .HasForeignKey(a => a.ServiceId)            
+                    .OnDelete(DeleteBehavior.Restrict);
+
             });
         }
     }

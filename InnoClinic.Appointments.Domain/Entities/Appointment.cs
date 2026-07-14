@@ -14,6 +14,8 @@ namespace InnoClinic.Appointments.Domain.Entities
 
         public Doctor Doctor { get; set; }
         public Guid ServiceId { get; set; }
+
+        public Service Service { get; set; }
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
         public bool IsApproved { get; set; } = false;
