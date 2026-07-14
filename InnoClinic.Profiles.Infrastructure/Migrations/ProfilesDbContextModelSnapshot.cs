@@ -187,6 +187,57 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                 {
                     b.Navigation("Doctors");
                 });
+
+            modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Patient", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsLinkedToAccount")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            AccountId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FirstName = "Emily",
+                            IsLinkedToAccount = true,
+                            LastName = "Brown",
+                            MiddleName = "Grace"
+                        },
+                        new
+                        {
+                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
+                            DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FirstName = "James",
+                            IsLinkedToAccount = false,
+                            LastName = "Wilson"
+                        });
+                });
 #pragma warning restore 612, 618
         }
     }
