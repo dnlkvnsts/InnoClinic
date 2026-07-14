@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace InnoClinic.Profiles.Api.Controllers
 {
 
-
-
     [ApiController]
     [Route("api/[controller]")]
     public class PatientController : ControllerBase

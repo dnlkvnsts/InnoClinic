@@ -104,6 +104,11 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
                     .HasForeignKey(a => a.ServiceId)            
                     .OnDelete(DeleteBehavior.Restrict);
 
+                entity.HasOne(a => a.Service)
+                    .WithMany(s => s.Appointments)
+                    .HasForeignKey(a => a.ServiceId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
                 entity.HasOne(a => a.Patient)
                     .WithMany(s => s.Appointments)
                     .HasForeignKey(a => a.PatientId)
