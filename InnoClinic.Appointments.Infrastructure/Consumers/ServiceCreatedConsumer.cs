@@ -2,6 +2,11 @@
 using InnoClinic.Appointments.Domain.Entities;
 using InnoClinic.Appointments.Infrastructure.Persistence;
 using MassTransit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 
 namespace InnoClinic.Appointments.Infrastructure.Consumers
