@@ -38,6 +38,7 @@ builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<DoctorCreatedConsumer>(); 
     x.AddConsumer<ServiceCreatedConsumer>();
+    x.AddConsumer<PatientCreatedConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -56,6 +57,12 @@ builder.Services.AddMassTransit(x =>
         cfg.ReceiveEndpoint("appointments-service-created-queue", e =>
         {
             e.ConfigureConsumer<ServiceCreatedConsumer>(context);
+        });
+
+
+        cfg.ReceiveEndpoint("appointments-patient-created-queue", e =>
+        {
+            e.ConfigureConsumer<PatientCreatedConsumer>(context);
         });
     });
 });

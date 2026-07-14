@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InnoClinic.Appointments.Infrastructure.Consumers
 {
-    public class PatientCreatedConsumer
+    public class PatientCreatedConsumer : IConsumer<PatientCreated>
     {
 
 
