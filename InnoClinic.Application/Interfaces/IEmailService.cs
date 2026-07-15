@@ -8,6 +8,6 @@ namespace InnoClinic.Application.Interfaces
 {
     public interface IEmailService
     {
-        Task SendConfirmationEmailAsync(string email);
+        Task SendConfirmationEmailAsync(string email, string confirmationLink);
     }
 }

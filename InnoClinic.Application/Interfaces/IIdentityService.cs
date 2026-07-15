@@ -15,5 +15,9 @@ namespace InnoClinic.Application.Interfaces
         Task<(bool IsSuccess, string? UserId)> CheckPasswordAsync(string email, string password);
 
         Task<bool> UserExistsAsync(string email);
+
+        Task<string> GenerateEmailConfirmationTokenAsync(string userId);
+
+        Task<(bool IsSuccess, string[]? Errors)> ConfirmEmailAsync(string userId, string token);
     }
 }
