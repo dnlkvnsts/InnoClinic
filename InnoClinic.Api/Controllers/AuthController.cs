@@ -3,6 +3,7 @@ using InnoClinic.Application.Features.Users.Commands.SignIn;
 using InnoClinic.Application.Features.Users.Commands.SignOut;
 using InnoClinic.Application.Features.Users.Commands.SignUp;
 using InnoClinic.Application.Interfaces;
+using InnoClinic.Auth.Application.Features.Users.Commands.ConfirmEmail;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,32 @@ public class AuthController : ControllerBase
 
         return Ok("Registration successuful!!!");
     }
+
+    [HttpGet("confirm-email")]
+
+    public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, [FromQuery] string token)
+    {
+
+        if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+        {
+            return BadRequest("User ID and Token are required.");
+        }
+
+        var result = await _mediator.Send(new ConfirmEmailCommand(userId, token));
+
+
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result.Errors);
+        }
+
+        return Ok("Email confirmed successfully! You can now sign in.");
+
+    }
+
+
+
+
 
 
     [HttpPost("signin")]
