@@ -18,12 +18,14 @@ namespace InnoClinic.Application.Features.Users.Commands.SignUp
 
         private readonly IIdentityService _identityService;
         private readonly IValidator<SignUpCommand> _validator;
+        private readonly IEmailService _emailService;
 
 
-        public SignUpCommandHandler(IIdentityService identityService, IValidator<SignUpCommand> validator)
+        public SignUpCommandHandler(IIdentityService identityService, IValidator<SignUpCommand> validator, IEmailService emailService)
         {
             _identityService = identityService;
             _validator = validator;
+            _emailService = emailService;
         }
 
         public async Task<SignUpResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
@@ -43,6 +45,13 @@ namespace InnoClinic.Application.Features.Users.Commands.SignUp
                 return new SignUpResponse(false, identityErrors);
             }
 
+
+            var token = await _identityService.GenerateEmailConfirmationTokenAsync(userId!);
+
+            var confirmationLink = $"https://localhost:7155/api/auth/confirm-email?userId={userId}&token={Uri.EscapeDataString(token)}";
+
+
+            await _emailService.SendConfirmationEmailAsync(request.Email, confirmationLink);
 
             return new SignUpResponse(true, null);
 
