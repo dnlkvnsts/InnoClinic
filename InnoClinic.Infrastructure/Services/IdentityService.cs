@@ -36,6 +36,17 @@ namespace InnoClinic.Infrastructure.Services
                 return (false, null);
             }
 
+
+            var isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            if (!isEmailConfirmed)
+            {
+              
+                return (false, null);
+            }
+
+
+
+
             var isPasswordValid = await _userManager.CheckPasswordAsync(user, password);
 
             if (!isPasswordValid)
