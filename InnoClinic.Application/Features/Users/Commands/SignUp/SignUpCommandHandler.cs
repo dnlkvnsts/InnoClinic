@@ -48,7 +48,7 @@ namespace InnoClinic.Application.Features.Users.Commands.SignUp
 
             var token = await _identityService.GenerateEmailConfirmationTokenAsync(userId!);
 
-            var confirmationLink = $"https://localhost:7155/api/auth/confirm-email?userId={userId}&token={Uri.EscapeDataString(token)}";
+            var confirmationLink = $"https://localhost:7115/api/auth/confirm-email?userId={userId}&token={Uri.EscapeDataString(token)}";
 
 
             await _emailService.SendConfirmationEmailAsync(request.Email, confirmationLink);
