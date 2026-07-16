@@ -64,6 +64,9 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreatePatientValidator>();
 
 var app = builder.Build();
 
+
+app.UseMiddleware<InnoClinic.Profiles.Api.Middleware.ValidationExceptionMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
