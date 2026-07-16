@@ -280,6 +280,13 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Patients");
@@ -293,7 +300,9 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                             FirstName = "Emily",
                             IsLinkedToAccount = true,
                             LastName = "Brown",
-                            MiddleName = "Grace"
+                            MiddleName = "Grace",
+                            Phone = "+1234567890",
+                            PhotoUrl = "https://example.com/photos/emilybrown.jpg"
                         },
                         new
                         {
@@ -301,7 +310,8 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                             DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             FirstName = "James",
                             IsLinkedToAccount = false,
-                            LastName = "Wilson"
+                            LastName = "Wilson",
+                            Phone = "+10987654321"
                         });
                 });
 #pragma warning restore 612, 618
