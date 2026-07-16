@@ -108,6 +108,8 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     FirstName = "Emily",
                     LastName = "Brown",
                     MiddleName = "Grace",
+                    Phone = "+1234567890", 
+                    PhotoUrl = "https://example.com/photos/emilybrown.jpg", 
                     IsLinkedToAccount = true,
                     DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, DateTimeKind.Utc),
                     AccountId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
@@ -117,10 +119,12 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     Id = Guid.Parse("44444444-4444-4444-4444-444444444444"),
                     FirstName = "James",
                     LastName = "Wilson",
-                    MiddleName = null, 
+                    MiddleName = null,
+                    Phone = "+10987654321",
+                    PhotoUrl = null,
                     IsLinkedToAccount = false,
                     DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, DateTimeKind.Utc),
-                    AccountId = null 
+                    AccountId = null
                 }
             );
 
