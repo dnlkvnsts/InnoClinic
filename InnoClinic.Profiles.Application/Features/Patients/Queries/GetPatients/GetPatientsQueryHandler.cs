@@ -42,6 +42,8 @@ namespace InnoClinic.Profiles.Application.Features.Patients.Queries.GetPatients
                 p.FirstName,
                 p.LastName,
                 p.MiddleName,
+                p.Phone,
+                p.PhotoUrl,
                 p.DateOfBirth,
                 p.IsLinkedToAccount
                 )).ToList();
