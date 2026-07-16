@@ -5,6 +5,10 @@ using InnoClinic.Profiles.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using MassTransit;
+using FluentValidation;
+using InnoClinic.Profiles.Application.Validators;
+using InnoClinic.Profiles.Application.Behaviors;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +39,8 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(GetDoctorsQuery).Assembly);
 
+    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+
 });
 
 
@@ -51,6 +57,9 @@ builder.Services.AddMassTransit(x =>
     });
 });
 
+
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePatientValidator>();
 
 
 var app = builder.Build();

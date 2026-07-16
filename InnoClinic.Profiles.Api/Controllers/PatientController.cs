@@ -40,7 +40,5 @@ namespace InnoClinic.Profiles.Api.Controllers
 
         }
 
-
-
     }
 }
