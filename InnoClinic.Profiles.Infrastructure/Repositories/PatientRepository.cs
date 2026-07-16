@@ -21,6 +21,11 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
             return _context.Patients.AsNoTracking();
         }
 
+        public async Task AddAsync(Patient patient, CancellationToken cancellationToken)
+        {
+            await _context.Patients.AddAsync(patient, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
 
 
 
