@@ -11,5 +11,8 @@ namespace InnoClinic.Profiles.Application.Interfaces
     {
 
         IQueryable<Patient> GetPatientsQuery();
-    }
+
+        Task AddAsync(Patient patient, CancellationToken cancellationToken);
+    
+}
 }
