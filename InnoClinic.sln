@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Appointments.Inf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Appointments.Api", "InnoClinic.Appointments.Api\InnoClinic.Appointments.Api.csproj", "{28DD8B6A-052F-4499-9BC8-1283E5A5537D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Services.Tests", "InnoClinic.Services.Tests\InnoClinic.Services.Tests.csproj", "{0A2AF4BF-A9F9-4A9C-BCC0-FDCA360B8289}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
