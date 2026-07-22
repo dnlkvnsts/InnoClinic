@@ -39,7 +39,7 @@ namespace InnoClinic.Services.Tests.Api
 
 
 
-            var result = await _serviceController.GetDoctors(CancellationToken.None);
+            var result = await _serviceController.GetServices(CancellationToken.None);
 
 
 
