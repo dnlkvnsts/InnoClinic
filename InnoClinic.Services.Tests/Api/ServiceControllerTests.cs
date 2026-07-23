@@ -54,11 +54,7 @@ namespace InnoClinic.Services.Tests.Api
                 Times.Once
             );
 
-
-
         }
-
-
 
     }
 }
