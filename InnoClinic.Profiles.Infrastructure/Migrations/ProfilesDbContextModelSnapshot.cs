@@ -66,7 +66,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
 
                     b.HasIndex("SpecializationId");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("Doctors", (string)null);
                 });
 
             modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Specialization", b =>
@@ -84,7 +84,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specializations");
+                    b.ToTable("Specializations", (string)null);
                 });
 
             modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Doctor", b =>
