@@ -66,13 +66,15 @@ namespace InnoClinic.Infrastructure.Services
 
 
 
-        public async Task<string> GenerateEmailConfirmationTokenAsync(string userId)
+        public async Task<(bool IsSuccess, string? Token, string[]? Errors)> GenerateEmailConfirmationTokenAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
 
-            if (user == null) throw new Exception("User not found");
+            if (user == null)
+                return (false, null, new[] { "User not found" });
 
-            return await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            return (true, token, null);
         }
 
         public async Task<(bool IsSuccess, string[]? Errors)> ConfirmEmailAsync(string userId, string token)
