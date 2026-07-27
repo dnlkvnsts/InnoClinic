@@ -35,7 +35,7 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
                 doctors = doctors.Where(
                     d => d.FirstName.ToLower().Contains(searchTerm) ||
                     d.LastName.ToLower().Contains(searchTerm) ||
-                    (d.MiddleName != null && d.LastName.ToLower().Contains(searchTerm))
+                    (d.MiddleName != null && d.MiddleName.ToLower().Contains(searchTerm))
 
                     );
             }
