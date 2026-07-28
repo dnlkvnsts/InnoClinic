@@ -1,4 +1,4 @@
-﻿using InnoClinic.Application.Interfaces;
+﻿using InnoClinic.Auth.Application.Interfaces;
 using MediatR;
 
 

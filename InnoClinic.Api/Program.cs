@@ -1,7 +1,7 @@
 using FluentValidation;
 using InnoClinic.Application.Behaviors;
 using InnoClinic.Auth.Application.Features.Users.Commands.SignUp;
-using InnoClinic.Application.Interfaces;
+using InnoClinic.Auth.Application.Interfaces;
 using InnoClinic.Auth.Application.Validators;
 using InnoClinic.Auth.Infrastructure.Services;
 using InnoClinic.Infrastructure.Persistence;
