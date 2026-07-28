@@ -1,8 +1,8 @@
 using FluentValidation;
 using InnoClinic.Application.Behaviors;
-using InnoClinic.Application.Features.Users.Commands.SignUp;
+using InnoClinic.Auth.Application.Features.Users.Commands.SignUp;
 using InnoClinic.Application.Interfaces;
-using InnoClinic.Application.Validators;
+using InnoClinic.Auth.Application.Validators;
 using InnoClinic.Auth.Infrastructure.Services;
 using InnoClinic.Infrastructure.Persistence;
 using InnoClinic.Infrastructure.Services;
@@ -39,9 +39,6 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<SignUpValidator>();
-
-
-
 
 
 

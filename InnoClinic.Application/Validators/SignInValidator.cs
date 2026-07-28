@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using InnoClinic.Application.Features.Users.Commands.SignIn;
-using InnoClinic.Application.Features.Users.Commands.SignUp;
+using InnoClinic.Auth.Application.Features.Users.Commands.SignIn;
+using InnoClinic.Auth.Application.Features.Users.Commands.SignUp;
 using InnoClinic.Application.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Application.Validators
+namespace InnoClinic.Auth.Application.Validators
 {
     public class SignInValidator : AbstractValidator<SignInCommand>
     {

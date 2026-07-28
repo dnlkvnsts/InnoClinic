@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Application.Features.Users.Commands.SignIn
+namespace InnoClinic.Auth.Application.Features.Users.Commands.SignIn
 {
     public class SignInCommandHandler : IRequestHandler<SignInCommand,string>
     {

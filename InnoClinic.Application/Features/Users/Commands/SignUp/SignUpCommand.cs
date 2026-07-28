@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Application.Features.Users.Commands.SignUp
+namespace InnoClinic.Auth.Application.Features.Users.Commands.SignUp
 {
     public record SignUpCommand(string Email, string Password, string ReEnteredPassword) : IRequest<SignUpResponse>;
 

@@ -3,7 +3,7 @@ using InnoClinic.Application.Interfaces;
 using MediatR;
 
 
-namespace InnoClinic.Application.Features.Users.Commands.SignUp
+namespace InnoClinic.Auth.Application.Features.Users.Commands.SignUp
 {
     public  class SignUpCommandHandler : IRequestHandler<SignUpCommand, SignUpResponse>
     {
@@ -39,10 +39,14 @@ namespace InnoClinic.Application.Features.Users.Commands.SignUp
             }
 
 
-            var token = await _identityService.GenerateEmailConfirmationTokenAsync(userId!);
+            var (isTokenSuccess, token, tokenErrors) = await _identityService.GenerateEmailConfirmationTokenAsync(userId!);
+
+            if (!isTokenSuccess || string.IsNullOrEmpty(token))
+            {
+                return new SignUpResponse(false, tokenErrors ?? new[] { "Failed to generate email confirmation token." });
+            }
 
             var confirmationLink = $"https://localhost:7115/api/auth/confirm-email?userId={userId}&token={Uri.EscapeDataString(token)}";
-
 
             await _emailService.SendConfirmationEmailAsync(request.Email, confirmationLink);
 

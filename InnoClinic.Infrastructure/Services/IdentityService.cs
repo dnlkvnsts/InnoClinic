@@ -88,6 +88,28 @@ namespace InnoClinic.Infrastructure.Services
 
         }
 
+        public async Task<bool> IsEmailConfirmedAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return false;
+
+            return await _userManager.IsEmailConfirmedAsync(user);
+        }
+
+        public async Task<(bool IsSuccess, string? UserId, string? Token, string[]? Errors)> GenerateEmailConfirmationTokenByEmailAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return (false, null, null, new[] { "Пользователь не найден." });
+            }
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+           
+            return (true, user.Id, token, null);
+        }
+
 
     }
 }
