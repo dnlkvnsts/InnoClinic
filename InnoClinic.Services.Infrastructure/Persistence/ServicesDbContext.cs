@@ -19,7 +19,6 @@ namespace InnoClinic.Services.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-        
             var consultationCategoryId = Guid.Parse("11111111-1111-1111-1111-111111111111");
             var diagnosticsCategoryId = Guid.Parse("22222222-2222-2222-2222-222222222222");
             var analysesCategoryId = Guid.Parse("33333333-3333-3333-3333-333333333333");
@@ -30,22 +29,19 @@ namespace InnoClinic.Services.Infrastructure.Persistence
                 new ServiceCategory { Id = analysesCategoryId, CategoryName = "analyses", TimeSlotSize = 15 }
             );
 
-         
             var cardiologyId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
             var neurologyId = Guid.Parse("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb");
 
             modelBuilder.Entity<Specialization>().HasData(
-                new Specialization { Id = cardiologyId, SpecializationName = "Кардиология", IsActive = true },
-                new Specialization { Id = neurologyId, SpecializationName = "Неврология", IsActive = true }
+                new Specialization { Id = cardiologyId, SpecializationName = "Cardiology", IsActive = true },
+                new Specialization { Id = neurologyId, SpecializationName = "Neurology", IsActive = true }
             );
 
-           
             modelBuilder.Entity<Service>().HasData(
-                
                 new Service
                 {
-                    Id = Guid.NewGuid(),
-                    ServiceName = "Первичный прием кардиолога",
+                    Id = Guid.Parse("c1111111-1111-1111-1111-111111111111"), 
+                    ServiceName = "Initial Cardiologist Consultation",
                     Price = 1500,
                     IsActive = true,
                     CategoryId = consultationCategoryId,
@@ -53,28 +49,26 @@ namespace InnoClinic.Services.Infrastructure.Persistence
                 },
                 new Service
                 {
-                    Id = Guid.NewGuid(),
-                    ServiceName = "Прием невролога",
+                    Id = Guid.Parse("c2222222-2222-2222-2222-222222222222"),
+                    ServiceName = "Neurologist Appointment",
                     Price = 1700,
                     IsActive = true,
                     CategoryId = consultationCategoryId,
                     SpecializationId = neurologyId
                 },
-                
                 new Service
                 {
-                    Id = Guid.NewGuid(),
-                    ServiceName = "УЗИ сердца",
+                    Id = Guid.Parse("c3333333-3333-3333-3333-333333333333"),
+                    ServiceName = "Echocardiography (Heart Ultrasound)",
                     Price = 2500,
                     IsActive = true,
                     CategoryId = diagnosticsCategoryId,
                     SpecializationId = null
                 },
-               
                 new Service
                 {
-                    Id = Guid.NewGuid(),
-                    ServiceName = "Общий анализ крови",
+                    Id = Guid.Parse("c4444444-4444-4444-4444-444444444444"),
+                    ServiceName = "Complete Blood Count",
                     Price = 500,
                     IsActive = true,
                     CategoryId = analysesCategoryId,

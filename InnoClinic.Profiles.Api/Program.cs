@@ -4,6 +4,11 @@ using InnoClinic.Profiles.Infrastructure.Persistence;
 using InnoClinic.Profiles.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
+using MassTransit;
+using FluentValidation;
+using InnoClinic.Profiles.Application.Validators;
+using InnoClinic.Profiles.Application.Behaviors;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +21,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("ProfilesConnecti
 
 
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 
 // Add services to the container.
 
@@ -32,9 +39,33 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(GetDoctorsQuery).Assembly);
 
+    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+
 });
 
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+    });
+});
+
+
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePatientValidator>();
+
+
 var app = builder.Build();
+
+
+app.UseMiddleware<InnoClinic.Profiles.Api.Middleware.ValidationExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

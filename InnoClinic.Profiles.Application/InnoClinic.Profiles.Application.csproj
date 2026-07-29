@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="8.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="MassTransit" Version="8.0.0" />
+    <PackageReference Include="MediatR" Version="14.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InnoClinic.Appointments.Domain\InnoClinic.Appointments.Domain.csproj" />
     <ProjectReference Include="..\InnoClinic.Profiles.Domain\InnoClinic.Profiles.Domain.csproj" />
   </ItemGroup>
 
