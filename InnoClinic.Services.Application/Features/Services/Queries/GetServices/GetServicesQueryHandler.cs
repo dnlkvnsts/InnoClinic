@@ -1,7 +1,8 @@
 ﻿using InnoClinic.Services.Application.DTOs;
 using InnoClinic.Services.Application.Interfaces;
+using MassTransit;
+using InnoClinic.Appointments.Domain;
 using MediatR;
-using System.Linq;
 
 
 namespace InnoClinic.Services.Application.Features.Services.Queries.GetServices
@@ -9,11 +10,12 @@ namespace InnoClinic.Services.Application.Features.Services.Queries.GetServices
     public class GetServicesQueryHandler : IRequestHandler<GetServicesQuery, AllServicesDto>
     {
         private readonly IServiceRepository _serviceRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-
-        public GetServicesQueryHandler(IServiceRepository serviceRepository)
+        public GetServicesQueryHandler(IServiceRepository serviceRepository, IPublishEndpoint publishEndpoint)
         {
             _serviceRepository = serviceRepository;
+            _publishEndpoint = publishEndpoint;
         }
        
 
@@ -21,6 +23,13 @@ namespace InnoClinic.Services.Application.Features.Services.Queries.GetServices
         public async Task<AllServicesDto> Handle(GetServicesQuery request, CancellationToken cancellationToken)
         {
             var services = await _serviceRepository.GetServicesAsync(cancellationToken);
+
+
+            foreach (var service in services)
+            {
+                await _publishEndpoint.Publish(new ServiceCreated(service.Id, service.ServiceName, service.Price),cancellationToken);
+            }
+
 
             var consultations = services
                 .Where(s => s.Category.CategoryName.Equals("consultations", StringComparison.OrdinalIgnoreCase))
@@ -39,13 +48,8 @@ namespace InnoClinic.Services.Application.Features.Services.Queries.GetServices
                 .Select(s => new ServiceDto(s.Id, s.ServiceName, s.Price)).ToList();
             ;
 
-
             return new AllServicesDto(consultations, diagnostics, analyses);
-
-       
         }
-
-
 
     }
 }
