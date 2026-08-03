@@ -1,10 +1,13 @@
+using InnoClinic.Profiles.Infrastructure.Consumers;
+using InnoClinic.Shared.Contracts;
 using InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors;
 using InnoClinic.Profiles.Application.Interfaces;
 using InnoClinic.Profiles.Infrastructure.Persistence;
 using InnoClinic.Profiles.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using MediatR;
 using MassTransit;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,18 +41,25 @@ builder.Services.AddMediatR(cfg =>
 });
 
 
+
 builder.Services.AddMassTransit(x =>
 {
-    x.UsingRabbitMq((context, cfg) =>
+
+    x.AddConsumer<SpecializationCreatedConsumer>();
+
+    x.UsingRabbitMq((context, sfg) =>
     {
-        
-        cfg.Host("localhost", "/", h =>
+        sfg.Host("localhost", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");
         });
+
+        sfg.ConfigureEndpoints(context);
     });
+
 });
+
 
 
 

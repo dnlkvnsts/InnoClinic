@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="MassTransit" Version="8.0.0" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.0" />
     <PackageReference Include="MediatR" Version="14.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\InnoClinic.Profiles.Application\InnoClinic.Profiles.Application.csproj" />
     <ProjectReference Include="..\InnoClinic.Profiles.Infrastructure\InnoClinic.Profiles.Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

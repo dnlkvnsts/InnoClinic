@@ -15,6 +15,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("ServicesConnecti
 
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 
+builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
 
 
 // Add services to the container.
@@ -36,19 +37,21 @@ builder.Services.AddMediatR(cfg =>
 
 
 
+
 builder.Services.AddMassTransit(x =>
 {
-    x.UsingRabbitMq((context, cfg) =>
+    x.UsingRabbitMq((context, sfg) =>
     {
-
-        cfg.Host("localhost", "/", h =>
+        sfg.Host("localhost", "/", h  =>
         {
             h.Username("guest");
             h.Password("guest");
         });
-    });
-});
 
+
+    });
+
+});
 
 
 
