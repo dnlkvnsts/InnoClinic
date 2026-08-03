@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InnoClinic.Profiles.Infrastructure.Migrations
 {
     [DbContext(typeof(ProfilesDbContext))]
-    [Migration("20260623122133_InitialProfilesCreate")]
-    partial class InitialProfilesCreate
+    [Migration("20260713114648_FixDoctorColumns")]
+    partial class FixDoctorColumns
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -55,37 +55,37 @@ namespace InnoClinic.Services.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("765da283-1779-4aea-909d-f7a5ba6b32bc"),
+                            Id = new Guid("c1111111-1111-1111-1111-111111111111"),
                             CategoryId = new Guid("11111111-1111-1111-1111-111111111111"),
                             IsActive = true,
                             Price = 1500m,
-                            ServiceName = "Первичный прием кардиолога",
+                            ServiceName = "Initial Cardiologist Consultation",
                             SpecializationId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
                         },
                         new
                         {
-                            Id = new Guid("ae484f68-911e-46bb-82ad-7daf45a54adb"),
+                            Id = new Guid("c2222222-2222-2222-2222-222222222222"),
                             CategoryId = new Guid("11111111-1111-1111-1111-111111111111"),
                             IsActive = true,
                             Price = 1700m,
-                            ServiceName = "Прием невролога",
+                            ServiceName = "Neurologist Appointment",
                             SpecializationId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb")
                         },
                         new
                         {
-                            Id = new Guid("1523b195-ffa8-4457-844b-3899d5d38b25"),
+                            Id = new Guid("c3333333-3333-3333-3333-333333333333"),
                             CategoryId = new Guid("22222222-2222-2222-2222-222222222222"),
                             IsActive = true,
                             Price = 2500m,
-                            ServiceName = "УЗИ сердца"
+                            ServiceName = "Echocardiography (Heart Ultrasound)"
                         },
                         new
                         {
-                            Id = new Guid("f4cd5bb7-5238-44aa-8fd5-181c27cda78b"),
+                            Id = new Guid("c4444444-4444-4444-4444-444444444444"),
                             CategoryId = new Guid("33333333-3333-3333-3333-333333333333"),
                             IsActive = true,
                             Price = 500m,
-                            ServiceName = "Общий анализ крови"
+                            ServiceName = "Complete Blood Count"
                         });
                 });
 
@@ -149,13 +149,13 @@ namespace InnoClinic.Services.Infrastructure.Migrations
                         {
                             Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
                             IsActive = true,
-                            SpecializationName = "Кардиология"
+                            SpecializationName = "Cardiology"
                         },
                         new
                         {
                             Id = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
                             IsActive = true,
-                            SpecializationName = "Неврология"
+                            SpecializationName = "Neurology"
                         });
                 });
 

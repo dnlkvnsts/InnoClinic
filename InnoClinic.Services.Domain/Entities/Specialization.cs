@@ -15,5 +15,6 @@ namespace InnoClinic.Services.Domain.Entities
 
         public ICollection<Service> Services { get; set; } = new List<Service>();
 
+
     }
 }
