@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Application.Interfaces
+namespace InnoClinic.Auth.Application.Interfaces
 {
     public interface  IIdentityService
     {
@@ -15,5 +15,16 @@ namespace InnoClinic.Application.Interfaces
         Task<(bool IsSuccess, string? UserId)> CheckPasswordAsync(string email, string password);
 
         Task<bool> UserExistsAsync(string email);
+
+        Task<(bool IsSuccess, string? Token, string[]? Errors)> GenerateEmailConfirmationTokenAsync(string userId);
+
+        Task<(bool IsSuccess, string[]? Errors)> ConfirmEmailAsync(string userId, string token);
+
+        Task<bool> IsEmailConfirmedAsync(string email);
+
+        Task<(bool IsSuccess, string? UserId, string? Token, string[]? Errors)> GenerateEmailConfirmationTokenByEmailAsync(string email);
+
+
+
     }
 }

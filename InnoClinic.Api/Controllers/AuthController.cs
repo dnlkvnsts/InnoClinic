@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
-using InnoClinic.Application.Features.Users.Commands.SignIn;
-using InnoClinic.Application.Features.Users.Commands.SignOut;
-using InnoClinic.Application.Features.Users.Commands.SignUp;
-using InnoClinic.Application.Interfaces;
+using InnoClinic.Auth.Application.Features.Users.Commands.SignIn;
+using InnoClinic.Auth.Application.Features.Users.Commands.SignOut;
+using InnoClinic.Auth.Application.Features.Users.Commands.SignUp;
+using InnoClinic.Auth.Application.Features.Users.Commands.ConfirmEmail;
+using InnoClinic.Auth.Application.Features.Users.Commands.ResendEmail;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,30 @@ public class AuthController : ControllerBase
         return Ok("Registration successuful!!!");
     }
 
+    [HttpGet("confirm-email")]
+
+    public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, [FromQuery] string token)
+    {
+
+        if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+        {
+            return BadRequest("User ID and Token are required.");
+        }
+
+        var result = await _mediator.Send(new ConfirmEmailCommand(userId, token));
+
+
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result.Errors);
+        }
+
+        return Ok("Email confirmed successfully! You can now sign in.");
+
+    }
+
+
+
 
     [HttpPost("signin")]
     public async Task<IActionResult> SignIn([FromBody] SignInCommand request)
@@ -72,5 +97,17 @@ public class AuthController : ControllerBase
         }
     }
 
+    [HttpPost("resend-confirmation-email")]
+    public async Task<IActionResult> ResendConfirmationEmail([FromBody] ResendEmailCommand command)
+    {
+        var result = await _mediator.Send(command);
+
+        if (!result)
+        {
+            return BadRequest(new { Message = "Failed to send confirmation email." });
+        }
+
+        return Ok(new { Message = "If the account is registered and not yet confirmed, a confirmation link has been sent to the email." });
+    }
 
 }

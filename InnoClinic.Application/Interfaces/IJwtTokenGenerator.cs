@@ -1,6 +1,6 @@
 ﻿
 
-namespace InnoClinic.Application.Interfaces
+namespace InnoClinic.Auth.Application.Interfaces
 {
     public interface IJwtTokenGenerator
     {

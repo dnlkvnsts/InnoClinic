@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Application.Features.Users.Commands.SignOut
+namespace InnoClinic.Auth.Application.Features.Users.Commands.SignOut
 {
     public record SignOutCommand : IRequest<bool>;
    

@@ -1,8 +1,9 @@
 using FluentValidation;
 using InnoClinic.Application.Behaviors;
-using InnoClinic.Application.Features.Users.Commands.SignUp;
-using InnoClinic.Application.Interfaces;
-using InnoClinic.Application.Validators;
+using InnoClinic.Auth.Application.Features.Users.Commands.SignUp;
+using InnoClinic.Auth.Application.Interfaces;
+using InnoClinic.Auth.Application.Validators;
+using InnoClinic.Auth.Infrastructure.Services;
 using InnoClinic.Infrastructure.Persistence;
 using InnoClinic.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -27,16 +28,17 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 6;
+    options.SignIn.RequireConfirmedEmail = true;
 })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IIdentityService, IdentityService>();
+
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<SignUpValidator>();
-
-
-
 
 
 

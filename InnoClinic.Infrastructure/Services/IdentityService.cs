@@ -1,4 +1,4 @@
-﻿using InnoClinic.Application.Interfaces;
+﻿using InnoClinic.Auth.Application.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -36,6 +36,17 @@ namespace InnoClinic.Infrastructure.Services
                 return (false, null);
             }
 
+
+            var isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            if (!isEmailConfirmed)
+            {
+              
+                return (false, null);
+            }
+
+
+
+
             var isPasswordValid = await _userManager.CheckPasswordAsync(user, password);
 
             if (!isPasswordValid)
@@ -52,5 +63,53 @@ namespace InnoClinic.Infrastructure.Services
             var user = await _userManager.FindByEmailAsync(email);
             return user != null; 
         }
+
+
+
+        public async Task<(bool IsSuccess, string? Token, string[]? Errors)> GenerateEmailConfirmationTokenAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return (false, null, new[] { "User not found" });
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            return (true, token, null);
+        }
+
+        public async Task<(bool IsSuccess, string[]? Errors)> ConfirmEmailAsync(string userId, string token)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if(user == null) return (false, new[] { "User not found"});
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            return (result.Succeeded, result.Errors.Select(e => e.Description).ToArray());
+
+
+        }
+
+        public async Task<bool> IsEmailConfirmedAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return false;
+
+            return await _userManager.IsEmailConfirmedAsync(user);
+        }
+
+        public async Task<(bool IsSuccess, string? UserId, string? Token, string[]? Errors)> GenerateEmailConfirmationTokenByEmailAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return (false, null, null, new[] { "Пользователь не найден." });
+            }
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+           
+            return (true, user.Id, token, null);
+        }
+
+
     }
 }

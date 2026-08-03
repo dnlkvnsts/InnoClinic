@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Application.Interfaces
+namespace InnoClinic.Auth.Application.Interfaces
 {
     public interface IEmailService
     {
-        Task SendConfirmationEmailAsync(string email);
+        Task SendConfirmationEmailAsync(string email, string confirmationLink);
     }
 }
