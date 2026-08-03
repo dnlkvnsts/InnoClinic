@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Services.Applica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.Services.Infrastructure", "InnoClinic.Services.Infrastructure\InnoClinic.Services.Infrastructure.csproj", "{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{B07336E0-4179-44E2-BD0D-A739D93FB36B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9E5FA34-AF88-41FB-BBD9-4007D2755C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B07336E0-4179-44E2-BD0D-A739D93FB36B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B07336E0-4179-44E2-BD0D-A739D93FB36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B07336E0-4179-44E2-BD0D-A739D93FB36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B07336E0-4179-44E2-BD0D-A739D93FB36B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

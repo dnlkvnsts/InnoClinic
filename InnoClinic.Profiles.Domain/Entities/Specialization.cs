@@ -4,17 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InnoClinic.Services.Domain.Entities
+namespace InnoClinic.Profiles.Domain.Entities
 {
-    public  class Specialization
+    public class Specialization
     {
         public Guid Id { get; set; }
         public string SpecializationName { get; set; } = string.Empty;
         public bool IsActive { get; set; } = true;
 
-
-        public ICollection<Service> Services { get; set; } = new List<Service>();
-
-
+        public ICollection<Doctor> Doctors { get; set; } = new List<Doctor>();
     }
 }
