@@ -1,4 +1,4 @@
-using InnoClinic.Profiles.Application.Consumers;
+using InnoClinic.Profiles.Infrastructure.Consumers;
 using InnoClinic.Shared.Contracts;
 using InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors;
 using InnoClinic.Profiles.Application.Interfaces;
@@ -7,6 +7,7 @@ using InnoClinic.Profiles.Infrastructure.Repositories;
 using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

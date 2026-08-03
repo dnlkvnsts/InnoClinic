@@ -4,6 +4,7 @@ using InnoClinic.Profiles.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InnoClinic.Profiles.Infrastructure.Migrations
 {
     [DbContext(typeof(ProfilesDbContext))]
-    partial class ProfilesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260629115156_AddSpecializationTableInProfiles")]
+    partial class AddSpecializationTableInProfiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +69,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
 
                     b.HasIndex("SpecializationId");
 
-                    b.ToTable("Doctors", (string)null);
+                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Specialization", b =>
@@ -84,7 +87,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specializations", (string)null);
+                    b.ToTable("Specializations");
                 });
 
             modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Doctor", b =>

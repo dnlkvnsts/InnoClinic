@@ -29,7 +29,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
             var currentYear = System.DateTime.UtcNow.Year;
 
 
-            var result = doctors.Select(d => new DoctorDto(
+            var result = await query.Select(d => new DoctorDto(
                     d.PhotoUrl,
                     d.FirstName,
                     d.LastName,
@@ -38,7 +38,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     d.Specialization.SpecializationName,
                     currentYear - d.CareerStartYear + 1,
                     d.OfficeAddress
-                )).ToList();
+                )).ToListAsync(cancellationToken);
 
             return result;
         }
