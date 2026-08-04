@@ -24,10 +24,32 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
         {
             return _context.Doctors.Include(d => d.Specialization).AsNoTracking();
             var query =  _context.Doctors.Include(d => d.Specialization).AsNoTracking();
+            var doctors =  _context.Doctors.Include(d => d.Specialization).AsNoTracking();
 
-            return await query.ToListAsync(cancellationToken);
+
+            doctors = doctors.Where(d => d.Status == "At work");
+
+
+
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                var searchTerm = fullName.Trim().ToLower();
+                doctors = doctors.Where(
+                    d => d.FirstName.ToLower().Contains(searchTerm) ||
+                    d.LastName.ToLower().Contains(searchTerm) ||
+                    (d.MiddleName != null && d.MiddleName.ToLower().Contains(searchTerm))
+
+                    );
+            }
+
+            if (specializationId.HasValue)
+            {
+                doctors = doctors.Where(d => d.SpecializationId == specializationId);
+            }
+
+            return await  doctors.ToListAsync(cancellationToken);
+
         }
-
 
     }
 }

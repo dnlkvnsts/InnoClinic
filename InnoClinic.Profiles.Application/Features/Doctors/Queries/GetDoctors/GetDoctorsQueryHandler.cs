@@ -27,6 +27,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
         {
           
             var doctors = await _doctorRepository.GetDoctorsAsync(request.FullName, request.SpecializationId, cancellationToken);
+            query = query.Where(d => d.Status == "At work");
 
             var currentYear = DateTime.UtcNow.Year;
           
@@ -41,8 +42,8 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                 ), cancellationToken);
             }
 
-
-            var result =  doctors.Select(d => new DoctorDto(
+            var result = doctors.Select(d => new DoctorDto(
+            var result = await query.Select(d => new DoctorDto(
                     d.PhotoUrl,
                     d.FirstName,
                     d.LastName,
