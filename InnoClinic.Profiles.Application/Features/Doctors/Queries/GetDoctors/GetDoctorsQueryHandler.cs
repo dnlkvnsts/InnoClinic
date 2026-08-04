@@ -43,7 +43,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
             }
 
 
-            var result = await query.Select(d => new DoctorDto(
+            var result =  doctors.Select(d => new DoctorDto(
                     d.PhotoUrl,
                     d.FirstName,
                     d.LastName,
@@ -52,7 +52,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     d.Specialization.SpecializationName,
                     currentYear - d.CareerStartYear + 1,
                     d.OfficeAddress
-                )).ToListAsync(cancellationToken);
+                )).ToList();
 
             return result;
         }
