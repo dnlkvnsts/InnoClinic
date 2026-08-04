@@ -2,11 +2,7 @@
 using InnoClinic.Profiles.Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using MassTransit;
 using InnoClinic.Appointments.Domain;
 
@@ -27,10 +23,11 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
 
         public async Task<IEnumerable<DoctorDto>> Handle(GetDoctorsQuery request, CancellationToken cancellationToken)
         {
+          
             var doctors = await _doctorRepository.GetDoctorsAsync(request.FullName, request.SpecializationId, cancellationToken);
 
-
-            var currentYear = System.DateTime.UtcNow.Year;
+            var currentYear = DateTime.UtcNow.Year;
+          
 
             foreach (var doctor in doctors)
             {
