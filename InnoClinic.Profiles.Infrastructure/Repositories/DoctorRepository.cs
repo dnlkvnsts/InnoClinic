@@ -22,8 +22,7 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
 
         public async Task<List<Doctor>> GetDoctorsAsync(string? fullName, Guid? specializationId, CancellationToken cancellationToken)
         {
-            return _context.Doctors.Include(d => d.Specialization).AsNoTracking();
-            var query =  _context.Doctors.Include(d => d.Specialization).AsNoTracking();
+           
             var doctors =  _context.Doctors.Include(d => d.Specialization).AsNoTracking();
 
 
