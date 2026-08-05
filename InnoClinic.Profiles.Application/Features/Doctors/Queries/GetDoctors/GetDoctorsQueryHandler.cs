@@ -1,5 +1,7 @@
-﻿using InnoClinic.Profiles.Application.DTOs;
+﻿using InnoClinic.Appointments.Domain;
+using InnoClinic.Profiles.Application.DTOs;
 using InnoClinic.Profiles.Application.Interfaces;
+using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,7 +29,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
         {
           
             var doctors = await _doctorRepository.GetDoctorsAsync(request.FullName, request.SpecializationId, cancellationToken);
-            query = query.Where(d => d.Status == "At work");
+          
 
             var currentYear = DateTime.UtcNow.Year;
           
@@ -43,7 +45,6 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
             }
 
             var result = doctors.Select(d => new DoctorDto(
-            var result = await query.Select(d => new DoctorDto(
                     d.PhotoUrl,
                     d.FirstName,
                     d.LastName,
@@ -52,7 +53,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     d.Specialization.SpecializationName,
                     currentYear - d.CareerStartYear + 1,
                     d.OfficeAddress
-                )).ToListAsync(cancellationToken);
+                )).ToList();
 
             return result;
         }

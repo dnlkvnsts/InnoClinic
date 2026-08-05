@@ -1,7 +1,6 @@
 ﻿using InnoClinic.Shared.Contracts;
 using InnoClinic.Profiles.Domain.Entities;
 using InnoClinic.Profiles.Infrastructure.Persistence;
-using InnoClinic.Shared.Contracts;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
