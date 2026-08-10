@@ -56,19 +56,6 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
             modelBuilder.Entity<Doctor>().HasData(
                 new Doctor
                 {
-                    Id = Guid.Parse("11111111-1111-1111-1111-111111111111"),
-                    FirstName = "John",
-                    LastName = "Doe",
-                    MiddleName = "Robert",
-                    PhotoUrl = "https://example.com/photos/johndoe.jpg",
-                    Specialization = "Cardiologist",
-                    CareerStartYear = 2015,
-                    Status = "At work", 
-                    OfficeAddress = "123 Health Ave, Room 101",
-                    UserId = "user-guid-1"
-                },
-                new Doctor
-                {
                     Id = Guid.Parse("bb22bb22-2222-2222-2222-222222222222"),
                     FirstName = "Алексей",
                     LastName = "Петров",
