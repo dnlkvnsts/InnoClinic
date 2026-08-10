@@ -24,7 +24,7 @@ namespace InnoClinic.Auth.Application.Interfaces
 
         Task<(bool IsSuccess, string? UserId, string? Token, string[]? Errors)> GenerateEmailConfirmationTokenByEmailAsync(string email);
 
-
+        Task<(bool IsSuccess, string? UserId, string? GeneratedPassword, string[]? Errors)> CreateDoctorAsync(string email);
 
     }
 }

@@ -50,5 +50,11 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
 
         }
 
+        public async Task AddAsync(Doctor doctor, CancellationToken cancellationToken)
+        {
+            await _context.Doctors.AddAsync(doctor, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
     }
 }

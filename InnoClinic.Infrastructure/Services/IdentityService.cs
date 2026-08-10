@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace InnoClinic.Infrastructure.Services
 {
-    public  class IdentityService : IIdentityService
+    public class IdentityService : IIdentityService
     {
         private readonly UserManager<IdentityUser> _userManager;
 
         public IdentityService(UserManager<IdentityUser> userManager) => _userManager = userManager;
 
 
-        public async Task<bool> IsEmailUniqueAsync(string email) =>  await _userManager.FindByEmailAsync(email) == null ;
+        public async Task<bool> IsEmailUniqueAsync(string email) => await _userManager.FindByEmailAsync(email) == null;
 
 
         public async Task<(bool IsSuccess, string? UserId, string[]? Errors)> CreateUserAsync(string email, string password)
@@ -40,7 +40,7 @@ namespace InnoClinic.Infrastructure.Services
             var isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
             if (!isEmailConfirmed)
             {
-              
+
                 return (false, null);
             }
 
@@ -61,7 +61,7 @@ namespace InnoClinic.Infrastructure.Services
         public async Task<bool> UserExistsAsync(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
-            return user != null; 
+            return user != null;
         }
 
 
@@ -80,7 +80,7 @@ namespace InnoClinic.Infrastructure.Services
         public async Task<(bool IsSuccess, string[]? Errors)> ConfirmEmailAsync(string userId, string token)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if(user == null) return (false, new[] { "User not found"});
+            if (user == null) return (false, new[] { "User not found" });
 
             var result = await _userManager.ConfirmEmailAsync(user, token);
             return (result.Succeeded, result.Errors.Select(e => e.Description).ToArray());
@@ -106,10 +106,69 @@ namespace InnoClinic.Infrastructure.Services
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-           
+
             return (true, user.Id, token, null);
         }
 
+
+
+        public async Task<(bool IsSuccess, string? UserId, string? GeneratedPassword, string[]? Errors)> CreateDoctorAsync(string email)
+        {
+
+            var existingUser = await _userManager.FindByEmailAsync(email);
+            if (existingUser != null)
+            {
+                return (false, null, null, new[] { "User with this email already exists" });
+            }
+
+
+            var generatedPassword = GenerateRandomPassword();
+
+
+            var user = new IdentityUser
+            {
+                UserName = email,
+                Email = email,
+                EmailConfirmed = true
+            };
+
+            var result = await _userManager.CreateAsync(user, generatedPassword);
+
+            if (!result.Succeeded)
+            {
+                return (false, null, null, result.Errors.Select(e => e.Description).ToArray());
+            }
+
+
+
+            return (true, user.Id, generatedPassword, null);
+        }
+
+
+        private static string GenerateRandomPassword()
+        {
+            const string uppercase = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+            const string lowercase = "abcdefghijkmnopqrstuvwxyz";
+            const string digits = "0123456789";
+            const string nonAlphanumeric = "!@#$%^&*";
+
+            var random = new Random();
+            var chars = new List<char>
+            {
+                uppercase[random.Next(uppercase.Length)],
+                lowercase[random.Next(lowercase.Length)],
+                digits[random.Next(digits.Length)],
+                nonAlphanumeric[random.Next(nonAlphanumeric.Length)]
+            };
+
+            string allChars = uppercase + lowercase + digits + nonAlphanumeric;
+            for (int i = chars.Count; i < 10; i++)
+            {
+                chars.Add(allChars[random.Next(allChars.Length)]);
+            }
+
+            return new string(chars.OrderBy(_ => random.Next()).ToArray());
+        }
 
     }
 }

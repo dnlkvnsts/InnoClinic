@@ -11,5 +11,7 @@ namespace InnoClinic.Profiles.Application.Interfaces
     {
         Task<List<Doctor>> GetDoctorsAsync(string? fullName, Guid? specializationId, CancellationToken cancellationToken);
 
+        Task AddAsync(Doctor doctor, CancellationToken cancellationToken);
+
     }
 }
