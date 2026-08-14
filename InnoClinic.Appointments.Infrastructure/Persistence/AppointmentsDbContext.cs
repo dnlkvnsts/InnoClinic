@@ -58,6 +58,27 @@ namespace InnoClinic.Appointments.Infrastructure.Persistence
                 entity.Property(e => e.MiddleName).HasMaxLength(100);
             });
 
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.ToTable("Services");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.ServiceName).IsRequired().HasMaxLength(150);
+                entity.Property(e => e.Price).HasColumnType("numeric(18,2)").IsRequired();
+            });
+
+
+
+            modelBuilder.Entity<Patient>(entity =>
+            {
+                entity.ToTable("Patients");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.MiddleName).HasMaxLength(100);
+            });
+
             modelBuilder.Entity<Appointment>(entity =>
             {
                 entity.ToTable("Appointments");

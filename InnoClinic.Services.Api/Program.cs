@@ -57,6 +57,8 @@ builder.Services.AddMassTransit(x =>
 
 
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

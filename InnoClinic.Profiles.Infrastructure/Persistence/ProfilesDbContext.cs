@@ -17,7 +17,6 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
 
-
         public DbSet<Patient> Patients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -57,20 +56,6 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
             modelBuilder.Entity<Doctor>().HasData(
                 new Doctor
                 {
-                    Id = Guid.Parse("aa11aa11-1111-1111-1111-111111111111"),
-                    FirstName = "Иван",
-                    LastName = "Иванов",
-                    MiddleName = "Сергеевич",
-                    DateOfBirth = new DateTime(1985, 5, 12),
-                    PhotoUrl = "https://example.com/photos/ivanov.jpg",
-                    CareerStartYear = 2010, 
-                    Status = "At work",    
-                    SpecializationId = therapyId, 
-                    OfficeAddress = "г. Минск, каб. 301",
-                    AccountId = Guid.NewGuid()
-                },
-                new Doctor
-                {
                     Id = Guid.Parse("bb22bb22-2222-2222-2222-222222222222"),
                     FirstName = "Алексей",
                     LastName = "Петров",
@@ -98,6 +83,38 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     AccountId = Guid.NewGuid()
                 }
             );
+
+
+
+
+
+            modelBuilder.Entity<Patient>().HasData(
+                new Patient
+                {
+                    Id = Guid.Parse("33333333-3333-3333-3333-333333333333"),
+                    FirstName = "Emily",
+                    LastName = "Brown",
+                    MiddleName = "Grace",
+                    Phone = "+1234567890", 
+                    PhotoUrl = "https://example.com/photos/emilybrown.jpg", 
+                    IsLinkedToAccount = true,
+                    DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, DateTimeKind.Utc),
+                    AccountId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
+                },
+                new Patient
+                {
+                    Id = Guid.Parse("44444444-4444-4444-4444-444444444444"),
+                    FirstName = "James",
+                    LastName = "Wilson",
+                    MiddleName = null,
+                    Phone = "+10987654321",
+                    PhotoUrl = null,
+                    IsLinkedToAccount = false,
+                    DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, DateTimeKind.Utc),
+                    AccountId = null
+                }
+            );
+
         }
     }
 }

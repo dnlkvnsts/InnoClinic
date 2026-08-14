@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
 {
     public  class GetDoctorsQueryHandler : IRequestHandler<GetDoctorsQuery, IEnumerable<DoctorDto>>
@@ -29,10 +30,9 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
         {
           
             var doctors = await _doctorRepository.GetDoctorsAsync(request.FullName, request.SpecializationId, cancellationToken);
-          
+      
 
-            var currentYear = DateTime.UtcNow.Year;
-          
+            var currentYear = System.DateTime.UtcNow.Year;
 
             foreach (var doctor in doctors)
             {
@@ -43,6 +43,9 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                     doctor.MiddleName
                 ), cancellationToken);
             }
+       
+          
+
 
             var result = doctors.Select(d => new DoctorDto(
                     d.PhotoUrl,

@@ -30,6 +30,7 @@ namespace InnoClinic.Appointments.Infrastructure.Consumers
             if (existingDoctor != null) return;
 
 
+
             var doctor = new Doctor
             {
                 Id = message.Id,

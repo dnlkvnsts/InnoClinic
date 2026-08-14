@@ -10,6 +10,8 @@ namespace InnoClinic.Profiles.Application.DTOs
         string FirstName,
         string LastName,
         string? MiddleName,
+        string Phone,            
+        string? PhotoUrl,
         DateTime DateOfBirth,
         bool IsLinkedToAccount
   );
