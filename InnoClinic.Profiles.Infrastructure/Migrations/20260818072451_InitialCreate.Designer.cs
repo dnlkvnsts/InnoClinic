@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InnoClinic.Profiles.Infrastructure.Migrations
 {
     [DbContext(typeof(ProfilesDbContext))]
-    [Migration("20260716103219_AddFieldsToPatient")]
-    partial class AddFieldsToPatient
+    [Migration("20260818072451_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,8 +31,14 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("CareerStartYear")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -52,48 +58,45 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Specialization")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("SpecializationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("SpecializationId");
 
                     b.ToTable("Doctors");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
-                            CareerStartYear = 2015,
-                            FirstName = "John",
-                            LastName = "Doe",
-                            MiddleName = "Robert",
-                            OfficeAddress = "123 Health Ave, Room 101",
-                            PhotoUrl = "https://example.com/photos/johndoe.jpg",
-                            Specialization = "Cardiologist",
-                            Status = "At work",
-                            UserId = "user-guid-1"
+                            Id = new Guid("bb22bb22-2222-2222-2222-222222222222"),
+                            AccountId = new Guid("55555555-5555-5555-5555-555555555555"),
+                            CareerStartYear = 2018,
+                            DateOfBirth = new DateTime(1990, 8, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FirstName = "Alex",
+                            LastName = "Petrov",
+                            MiddleName = "Nikolaevich",
+                            OfficeAddress = "Minsk, app. 405",
+                            SpecializationId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Status = "At work"
                         },
                         new
                         {
-                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
-                            CareerStartYear = 2018,
-                            FirstName = "Alice",
-                            LastName = "Smith",
-                            MiddleName = "Jane",
-                            OfficeAddress = "123 Health Ave, Room 205",
-                            PhotoUrl = "https://example.com/photos/alicesmith.jpg",
-                            Specialization = "Pediatrician",
-                            Status = "At work",
-                            UserId = "user-guid-2"
+                            Id = new Guid("cc33cc33-3333-3333-3333-333333333333"),
+                            AccountId = new Guid("66666666-6666-6666-6666-666666666666"),
+                            CareerStartYear = 2005,
+                            DateOfBirth = new DateTime(1978, 11, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FirstName = "Olga",
+                            LastName = "Ivanova",
+                            MiddleName = "Michalovna",
+                            OfficeAddress = "Minsk, app. 302",
+                            SpecializationId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Status = "On vacation"
                         });
                 });
 
@@ -156,6 +159,54 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                             LastName = "Wilson",
                             Phone = "+10987654321"
                         });
+                });
+
+            modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Specialization", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SpecializationName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specializations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            IsActive = true,
+                            SpecializationName = "Therapist"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            IsActive = true,
+                            SpecializationName = "Surger"
+                        });
+                });
+
+            modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Doctor", b =>
+                {
+                    b.HasOne("InnoClinic.Profiles.Domain.Entities.Specialization", "Specialization")
+                        .WithMany("Doctors")
+                        .HasForeignKey("SpecializationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Specialization");
+                });
+
+            modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Specialization", b =>
+                {
+                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }

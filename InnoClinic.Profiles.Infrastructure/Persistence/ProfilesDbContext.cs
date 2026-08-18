@@ -1,28 +1,20 @@
 ﻿using InnoClinic.Profiles.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InnoClinic.Profiles.Infrastructure.Persistence
 {
     public class ProfilesDbContext : DbContext
     {
-
         public ProfilesDbContext(DbContextOptions<ProfilesDbContext> options) : base(options) { }
-
 
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
-
         public DbSet<Patient> Patients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
 
             modelBuilder.Entity<Doctor>()
                 .HasOne(d => d.Specialization)
@@ -30,63 +22,54 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                 .HasForeignKey(d => d.SpecializationId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-
-
             var therapyId = Guid.Parse("11111111-1111-1111-1111-111111111111");
             var surgeryId = Guid.Parse("22222222-2222-2222-2222-222222222222");
 
-          
             modelBuilder.Entity<Specialization>().HasData(
                 new Specialization
                 {
                     Id = therapyId,
-                    SpecializationName = "Терапевт",
+                    SpecializationName = "Therapist",
                     IsActive = true
                 },
                 new Specialization
                 {
                     Id = surgeryId,
-                    SpecializationName = "Хирург",
+                    SpecializationName = "Surger",
                     IsActive = true
                 }
             );
 
-        
             modelBuilder.Entity<Doctor>().HasData(
                 new Doctor
                 {
                     Id = Guid.Parse("bb22bb22-2222-2222-2222-222222222222"),
-                    FirstName = "Алексей",
-                    LastName = "Петров",
-                    MiddleName = "Николаевич",
-                    DateOfBirth = new DateTime(1990, 8, 24),
+                    FirstName = "Alex",
+                    LastName = "Petrov",
+                    MiddleName = "Nikolaevich",
+                    DateOfBirth = new DateTime(1990, 8, 24, 0, 0, 0, DateTimeKind.Utc),
                     PhotoUrl = null,
                     CareerStartYear = 2018,
-                    Status = "At work",     
-                    SpecializationId = surgeryId, 
-                    OfficeAddress = "г. Минск, каб. 405",
-                    AccountId = Guid.NewGuid()
+                    Status = "At work",
+                    SpecializationId = surgeryId,
+                    OfficeAddress = "Minsk, app. 405",
+                    AccountId = Guid.Parse("55555555-5555-5555-5555-555555555555")
                 },
                 new Doctor
                 {
                     Id = Guid.Parse("cc33cc33-3333-3333-3333-333333333333"),
-                    FirstName = "Ольга",
-                    LastName = "Иванова", 
-                    MiddleName = "Михайловна",
-                    DateOfBirth = new DateTime(1978, 11, 2),
+                    FirstName = "Olga",
+                    LastName = "Ivanova",
+                    MiddleName = "Michalovna",
+                    DateOfBirth = new DateTime(1978, 11, 2, 0, 0, 0, DateTimeKind.Utc),
                     PhotoUrl = null,
                     CareerStartYear = 2005,
-                    Status = "On vacation", 
+                    Status = "On vacation",
                     SpecializationId = therapyId,
-                    OfficeAddress = "г. Минск, каб. 302",
-                    AccountId = Guid.NewGuid()
+                    OfficeAddress = "Minsk, app. 302",
+                    AccountId = Guid.Parse("66666666-6666-6666-6666-666666666666")
                 }
             );
-
-
-
-
 
             modelBuilder.Entity<Patient>().HasData(
                 new Patient
@@ -95,8 +78,8 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     FirstName = "Emily",
                     LastName = "Brown",
                     MiddleName = "Grace",
-                    Phone = "+1234567890", 
-                    PhotoUrl = "https://example.com/photos/emilybrown.jpg", 
+                    Phone = "+1234567890",
+                    PhotoUrl = "https://example.com/photos/emilybrown.jpg",
                     IsLinkedToAccount = true,
                     DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, DateTimeKind.Utc),
                     AccountId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
@@ -114,7 +97,6 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     AccountId = null
                 }
             );
-
         }
     }
 }
