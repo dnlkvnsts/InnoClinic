@@ -87,7 +87,8 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { new Guid("11111111-1111-1111-1111-111111111111"), true, "Therapist" },
-                    { new Guid("22222222-2222-2222-2222-222222222222"), true, "Surger" }
+                    { new Guid("22222222-2222-2222-2222-222222222222"), true, "Surgeon" },
+                    { new Guid("33333333-3333-3333-3333-333333333333"), true, "Cardiologist" }
                 });
 
             migrationBuilder.InsertData(
@@ -95,8 +96,9 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                 columns: new[] { "Id", "AccountId", "CareerStartYear", "DateOfBirth", "FirstName", "LastName", "MiddleName", "OfficeAddress", "PhotoUrl", "SpecializationId", "Status" },
                 values: new object[,]
                 {
-                    { new Guid("bb22bb22-2222-2222-2222-222222222222"), new Guid("55555555-5555-5555-5555-555555555555"), 2018, new DateTime(1990, 8, 24, 0, 0, 0, 0, DateTimeKind.Utc), "Alex", "Petrov", "Nikolaevich", "Minsk, app. 405", null, new Guid("22222222-2222-2222-2222-222222222222"), "At work" },
-                    { new Guid("cc33cc33-3333-3333-3333-333333333333"), new Guid("66666666-6666-6666-6666-666666666666"), 2005, new DateTime(1978, 11, 2, 0, 0, 0, 0, DateTimeKind.Utc), "Olga", "Ivanova", "Michalovna", "Minsk, app. 302", null, new Guid("11111111-1111-1111-1111-111111111111"), "On vacation" }
+                    { new Guid("bb22bb22-2222-2222-2222-222222222222"), new Guid("55555555-5555-5555-5555-555555555555"), 2018, new DateTime(1990, 8, 24, 0, 0, 0, 0, DateTimeKind.Utc), "Alex", "Petrov", "Nikolaevich", "Minsk, office 405", null, new Guid("22222222-2222-2222-2222-222222222222"), "At work" },
+                    { new Guid("cc33cc33-3333-3333-3333-333333333333"), new Guid("66666666-6666-6666-6666-666666666666"), 2005, new DateTime(1978, 11, 2, 0, 0, 0, 0, DateTimeKind.Utc), "Olga", "Ivanova", "Mikhailovna", "Minsk, office 302", null, new Guid("11111111-1111-1111-1111-111111111111"), "On vacation" },
+                    { new Guid("dd44dd44-4444-4444-4444-444444444444"), new Guid("77777777-7777-7777-7777-777777777777"), 2012, new DateTime(1985, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), "Alex", "Smith", "John", "Minsk, office 210", null, new Guid("33333333-3333-3333-3333-333333333333"), "At work" }
                 });
 
             migrationBuilder.CreateIndex(

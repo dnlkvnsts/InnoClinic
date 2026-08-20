@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InnoClinic.Profiles.Infrastructure.Migrations
 {
     [DbContext(typeof(ProfilesDbContext))]
-    [Migration("20260818072451_InitialCreate")]
+    [Migration("20260818093231_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -81,7 +81,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                             FirstName = "Alex",
                             LastName = "Petrov",
                             MiddleName = "Nikolaevich",
-                            OfficeAddress = "Minsk, app. 405",
+                            OfficeAddress = "Minsk, office 405",
                             SpecializationId = new Guid("22222222-2222-2222-2222-222222222222"),
                             Status = "At work"
                         },
@@ -93,10 +93,23 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                             DateOfBirth = new DateTime(1978, 11, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             FirstName = "Olga",
                             LastName = "Ivanova",
-                            MiddleName = "Michalovna",
-                            OfficeAddress = "Minsk, app. 302",
+                            MiddleName = "Mikhailovna",
+                            OfficeAddress = "Minsk, office 302",
                             SpecializationId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Status = "On vacation"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd44dd44-4444-4444-4444-444444444444"),
+                            AccountId = new Guid("77777777-7777-7777-7777-777777777777"),
+                            CareerStartYear = 2012,
+                            DateOfBirth = new DateTime(1985, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FirstName = "Alex",
+                            LastName = "Smith",
+                            MiddleName = "John",
+                            OfficeAddress = "Minsk, office 210",
+                            SpecializationId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Status = "At work"
                         });
                 });
 
@@ -189,7 +202,13 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
                             IsActive = true,
-                            SpecializationName = "Surger"
+                            SpecializationName = "Surgeon"
+                        },
+                        new
+                        {
+                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            IsActive = true,
+                            SpecializationName = "Cardiologist"
                         });
                 });
 

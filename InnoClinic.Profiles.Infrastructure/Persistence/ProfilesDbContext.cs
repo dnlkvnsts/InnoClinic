@@ -22,8 +22,10 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                 .HasForeignKey(d => d.SpecializationId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+     
             var therapyId = Guid.Parse("11111111-1111-1111-1111-111111111111");
             var surgeryId = Guid.Parse("22222222-2222-2222-2222-222222222222");
+            var cardiologyId = Guid.Parse("33333333-3333-3333-3333-333333333333");
 
             modelBuilder.Entity<Specialization>().HasData(
                 new Specialization
@@ -35,12 +37,20 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                 new Specialization
                 {
                     Id = surgeryId,
-                    SpecializationName = "Surger",
+                    SpecializationName = "Surgeon",
+                    IsActive = true
+                },
+                new Specialization
+                {
+                    Id = cardiologyId,
+                    SpecializationName = "Cardiologist",
                     IsActive = true
                 }
             );
 
+          
             modelBuilder.Entity<Doctor>().HasData(
+               
                 new Doctor
                 {
                     Id = Guid.Parse("bb22bb22-2222-2222-2222-222222222222"),
@@ -52,25 +62,42 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     CareerStartYear = 2018,
                     Status = "At work",
                     SpecializationId = surgeryId,
-                    OfficeAddress = "Minsk, app. 405",
+                    OfficeAddress = "Minsk, office 405",
                     AccountId = Guid.Parse("55555555-5555-5555-5555-555555555555")
                 },
+               
                 new Doctor
                 {
                     Id = Guid.Parse("cc33cc33-3333-3333-3333-333333333333"),
                     FirstName = "Olga",
                     LastName = "Ivanova",
-                    MiddleName = "Michalovna",
+                    MiddleName = "Mikhailovna",
                     DateOfBirth = new DateTime(1978, 11, 2, 0, 0, 0, DateTimeKind.Utc),
                     PhotoUrl = null,
                     CareerStartYear = 2005,
                     Status = "On vacation",
                     SpecializationId = therapyId,
-                    OfficeAddress = "Minsk, app. 302",
+                    OfficeAddress = "Minsk, office 302",
                     AccountId = Guid.Parse("66666666-6666-6666-6666-666666666666")
+                },
+               
+                new Doctor
+                {
+                    Id = Guid.Parse("dd44dd44-4444-4444-4444-444444444444"),
+                    FirstName = "Alex",
+                    LastName = "Smith",
+                    MiddleName = "John",
+                    DateOfBirth = new DateTime(1985, 3, 12, 0, 0, 0, DateTimeKind.Utc),
+                    PhotoUrl = null,
+                    CareerStartYear = 2012,
+                    Status = "At work",
+                    SpecializationId = cardiologyId,
+                    OfficeAddress = "Minsk, office 210",
+                    AccountId = Guid.Parse("77777777-7777-7777-7777-777777777777")
                 }
             );
 
+            
             modelBuilder.Entity<Patient>().HasData(
                 new Patient
                 {
