@@ -6,6 +6,8 @@ using InnoClinic.Auth.Application.Validators;
 using InnoClinic.Auth.Infrastructure.Services;
 using InnoClinic.Infrastructure.Persistence;
 using InnoClinic.Infrastructure.Services;
+using InnoClinic.Auth.Infrastructure.Consumers;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +41,32 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<SignUpValidator>();
+
+
+
+
+builder.Services.AddMassTransit(x =>
+{
+  
+    x.AddConsumer<DoctorCreatedConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ReceiveEndpoint("authorization-doctor-created", e =>
+        {
+            e.ConfigureConsumer<DoctorCreatedConsumer>(context);
+        });
+        
+
+    });
+});
+
 
 
 

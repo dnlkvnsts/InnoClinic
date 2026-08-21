@@ -50,5 +50,25 @@ namespace InnoClinic.Profiles.Infrastructure.Repositories
 
         }
 
+        public async Task AddAsync(Doctor doctor, CancellationToken cancellationToken)
+        {
+            await _context.Doctors.AddAsync(doctor, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+
+
+
+        public async Task<Doctor?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
+        }
+
+        public async Task UpdateAsync(Doctor doctor, CancellationToken cancellationToken)
+        {
+            _context.Doctors.Update(doctor);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
     }
 }

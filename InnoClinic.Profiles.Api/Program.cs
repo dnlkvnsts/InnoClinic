@@ -1,9 +1,12 @@
-using InnoClinic.Profiles.Infrastructure.Consumers;
-using InnoClinic.Shared.Contracts;
+using FluentValidation;
+using InnoClinic.Profiles.Application.Behaviors;
 using InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors;
 using InnoClinic.Profiles.Application.Interfaces;
+using InnoClinic.Profiles.Application.Validators;
+using InnoClinic.Profiles.Infrastructure.Consumers;
 using InnoClinic.Profiles.Infrastructure.Persistence;
 using InnoClinic.Profiles.Infrastructure.Repositories;
+using InnoClinic.Shared.Contracts;
 using MassTransit;
 using FluentValidation;
 using InnoClinic.Profiles.Application.Validators;
@@ -29,6 +32,10 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 
 // Add services to the container.
 
+
+builder.Services.AddValidatorsFromAssembly(typeof(CreateDoctorsCommandValidator).Assembly);
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -42,7 +49,7 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(GetDoctorsQuery).Assembly);
 
-    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 });
 
@@ -52,6 +59,7 @@ builder.Services.AddMassTransit(x =>
 {
 
     x.AddConsumer<SpecializationCreatedConsumer>();
+    x.AddConsumer<DoctorAccountCreatedConsumer>();
 
     x.UsingRabbitMq((context, sfg) =>
     {
@@ -83,6 +91,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<InnoClinic.Profiles.Api.Middlewares.ValidationExceptionMiddleware>();
+
 
 app.UseHttpsRedirection();
 
