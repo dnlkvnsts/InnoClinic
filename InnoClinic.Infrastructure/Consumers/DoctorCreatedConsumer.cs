@@ -36,6 +36,9 @@ namespace InnoClinic.Auth.Infrastructure.Consumers
                 return;
             }
 
+
+            await context.Publish(new DoctorAccountCreated(msg.DoctorId, userId));
+
             var (tokenSuccess, token, tokenErrors) =
                     await _identityService.GenerateEmailConfirmationTokenAsync(userId);
 
@@ -49,7 +52,7 @@ namespace InnoClinic.Auth.Infrastructure.Consumers
             
             string confirmationLink = $"https://your-frontend-domain.com/confirm-email?userId={userId}&token={Uri.EscapeDataString(token)}";
 
-            await _emailService.SendConfirmationEmailAsync(msg.Email, confirmationLink);
+            await _emailService.SendDoctorWelcomeEmailAsync(msg.Email, password, confirmationLink);
         }
     }
 

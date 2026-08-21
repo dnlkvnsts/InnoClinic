@@ -22,7 +22,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Commands.CreateDoctor
 
         public async Task<Guid> Handle(CreateDoctorsCommand request, CancellationToken cancellationToken)
         {
-            var temporaryAccountId = Guid.NewGuid();
+            
 
             var doctor = new Doctor
             {
@@ -36,7 +36,7 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Commands.CreateDoctor
                 Status = string.IsNullOrWhiteSpace(request.Status) ? "At work" : request.Status,
                 SpecializationId = request.SpecializationId,
                 OfficeAddress = request.OfficeAddress,
-                AccountId = temporaryAccountId
+                AccountId = Guid.Empty,
             };
 
 

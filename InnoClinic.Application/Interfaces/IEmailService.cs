@@ -9,5 +9,7 @@ namespace InnoClinic.Auth.Application.Interfaces
     public interface IEmailService
     {
         Task SendConfirmationEmailAsync(string email, string confirmationLink);
+
+        Task SendDoctorWelcomeEmailAsync(string email, string password, string confirmationLink);
     }
 }

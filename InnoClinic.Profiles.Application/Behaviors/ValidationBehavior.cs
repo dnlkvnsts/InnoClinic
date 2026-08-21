@@ -41,9 +41,12 @@ namespace InnoClinic.Profiles.Application.Behaviors
             {
                 throw new ValidationException(failures);
             }
-            }
 
             return await next();
         }
+
+           
+        }
     }
-}
+
+

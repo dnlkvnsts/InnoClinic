@@ -18,5 +18,16 @@ namespace InnoClinic.Auth.Infrastructure.Services
 
             await Task.CompletedTask;
         }
+
+        public async Task SendDoctorWelcomeEmailAsync(string email, string password, string confirmationLink)
+        {
+            Console.WriteLine("==================================================");
+            Console.WriteLine($"[DOCTOR WELCOME EMAIL SENT TO {email}]");
+            Console.WriteLine($"Your Temporary Password: {password}");
+            Console.WriteLine($"Please confirm registration: {confirmationLink}");
+            Console.WriteLine("==================================================");
+
+            await Task.CompletedTask;
+        }
     }
 }

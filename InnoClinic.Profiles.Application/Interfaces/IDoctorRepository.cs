@@ -13,5 +13,8 @@ namespace InnoClinic.Profiles.Application.Interfaces
 
         Task AddAsync(Doctor doctor, CancellationToken cancellationToken);
 
+        Task<Doctor?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task UpdateAsync(Doctor doctor, CancellationToken cancellationToken);
+
     }
 }

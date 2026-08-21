@@ -28,8 +28,9 @@ namespace InnoClinic.Profiles.Api.Controllers
             return Ok(doctors);
         }
 
-        [HttpPost]
 
+        
+        [HttpPost]
         public async Task<IActionResult> CreateDoctor([FromBody] CreateDoctorsCommand command, CancellationToken cancellationToken)
         {
             var doctorId = await _mediator.Send(command, cancellationToken);
