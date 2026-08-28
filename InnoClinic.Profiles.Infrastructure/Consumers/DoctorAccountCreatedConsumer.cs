@@ -1,11 +1,9 @@
 ﻿using InnoClinic.Profiles.Application.Interfaces;
 using MassTransit;
-using Shared.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using InnoClinic.Shared.Contracts;
+using InnoClinic.Profiles.Domain.Entities;
+
+
 
 namespace InnoClinic.Profiles.Infrastructure.Consumers
 {
@@ -21,13 +19,23 @@ namespace InnoClinic.Profiles.Infrastructure.Consumers
         public async Task Consume(ConsumeContext<DoctorAccountCreated> context)
         {
             var msg = context.Message;
-            var doctor = await _doctorRepository.GetByIdAsync(msg.DoctorId, context.CancellationToken);
 
-            if (doctor != null)
+            var doctor = new Doctor
             {
-                doctor.AccountId = Guid.Parse(msg.UserId);
-                await _doctorRepository.UpdateAsync(doctor, context.CancellationToken);
-            }
+                Id = Guid.NewGuid(),
+                AccountId = msg.AccountId, 
+                FirstName = msg.FirstName,
+                LastName = msg.LastName,
+                MiddleName = msg.MiddleName,
+                DateOfBirth = msg.DateOfBirth,
+                PhotoUrl = msg.PhotoUrl,
+                CareerStartYear = msg.CareerStartYear,
+                Status = string.IsNullOrWhiteSpace(msg.Status) ? "At work" : msg.Status,
+                SpecializationId = msg.SpecializationId,
+                OfficeAddress = msg.OfficeAddress
+            };
+
+            await _doctorRepository.AddAsync(doctor, context.CancellationToken);
         }
     }
 }

@@ -4,10 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Contracts
+namespace InnoClinic.Shared.Contracts
 {
     public record DoctorAccountCreated(
-        Guid DoctorId,
-        string UserId
-    );
+       Guid AccountId,
+       string FirstName,
+       string LastName,
+       string? MiddleName,
+       DateTime DateOfBirth,
+       string? PhotoUrl,
+       int CareerStartYear,
+       string? Status,
+       Guid SpecializationId,
+       string OfficeAddress
+   );
 }

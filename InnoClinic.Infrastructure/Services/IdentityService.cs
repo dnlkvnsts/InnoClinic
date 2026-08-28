@@ -1,10 +1,6 @@
 ﻿using InnoClinic.Auth.Application.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace InnoClinic.Infrastructure.Services
 {
@@ -24,6 +20,7 @@ namespace InnoClinic.Infrastructure.Services
             var result = await _userManager.CreateAsync(user, password);
             return (result.Succeeded, user.Id, result.Errors.Select(e => e.Description).ToArray());
         }
+
 
 
 
@@ -152,22 +149,28 @@ namespace InnoClinic.Infrastructure.Services
             const string digits = "0123456789";
             const string nonAlphanumeric = "!@#$%^&*";
 
-            var random = new Random();
             var chars = new List<char>
             {
-                uppercase[random.Next(uppercase.Length)],
-                lowercase[random.Next(lowercase.Length)],
-                digits[random.Next(digits.Length)],
-                nonAlphanumeric[random.Next(nonAlphanumeric.Length)]
+                uppercase[RandomNumberGenerator.GetInt32(uppercase.Length)],
+                lowercase[RandomNumberGenerator.GetInt32(lowercase.Length)],
+                digits[RandomNumberGenerator.GetInt32(digits.Length)],
+                nonAlphanumeric[RandomNumberGenerator.GetInt32(nonAlphanumeric.Length)]
             };
 
             string allChars = uppercase + lowercase + digits + nonAlphanumeric;
             for (int i = chars.Count; i < 10; i++)
             {
-                chars.Add(allChars[random.Next(allChars.Length)]);
+                chars.Add(allChars[RandomNumberGenerator.GetInt32(allChars.Length)]);
             }
 
-            return new string(chars.OrderBy(_ => random.Next()).ToArray());
+
+            for (int i = chars.Count - 1; i > 0; i--)
+            {
+                int j = RandomNumberGenerator.GetInt32(i + 1);
+                (chars[i], chars[j]) = (chars[j], chars[i]);
+            }
+
+            return new string(chars.ToArray());
         }
 
     }

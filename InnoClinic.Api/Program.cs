@@ -6,7 +6,6 @@ using InnoClinic.Auth.Application.Validators;
 using InnoClinic.Auth.Infrastructure.Services;
 using InnoClinic.Infrastructure.Persistence;
 using InnoClinic.Infrastructure.Services;
-using InnoClinic.Auth.Infrastructure.Consumers;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -47,23 +46,22 @@ builder.Services.AddValidatorsFromAssemblyContaining<SignUpValidator>();
 
 builder.Services.AddMassTransit(x =>
 {
-  
-    x.AddConsumer<DoctorCreatedConsumer>();
+   
 
     x.UsingRabbitMq((context, cfg) =>
     {
-        cfg.Host("localhost", "/", h =>
+        var rabbitHost = builder.Configuration["RabbitMQ:Host"] ?? "localhost";
+        var rabbitVHost = builder.Configuration["RabbitMQ:VirtualHost"] ?? "/";
+        var rabbitUser = builder.Configuration["RabbitMQ:Username"] ?? "guest";
+        var rabbitPass = builder.Configuration["RabbitMQ:Password"] ?? "guest";
+
+        cfg.Host(rabbitHost, rabbitVHost, h =>
         {
-            h.Username("guest");
-            h.Password("guest");
+            h.Username(rabbitUser);
+            h.Password(rabbitPass);
         });
 
-        cfg.ReceiveEndpoint("authorization-doctor-created", e =>
-        {
-            e.ConfigureConsumer<DoctorCreatedConsumer>(context);
-        });
-        
-
+       
     });
 });
 

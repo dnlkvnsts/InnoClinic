@@ -1,4 +1,4 @@
-﻿using InnoClinic.Profiles.Application.Features.Doctors.Commands.CreateDoctors;
+﻿
 using InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -30,13 +30,7 @@ namespace InnoClinic.Profiles.Api.Controllers
 
 
         
-        [HttpPost]
-        public async Task<IActionResult> CreateDoctor([FromBody] CreateDoctorsCommand command, CancellationToken cancellationToken)
-        {
-            var doctorId = await _mediator.Send(command, cancellationToken);
-
-            return Ok(doctorId);
-        }
+    
     }
 
 }

@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
+using InnoClinic.Auth.Application.Features.Doctors.Commands.CreateDoctor;
+using InnoClinic.Auth.Application.Features.Users.Commands.ConfirmEmail;
+using InnoClinic.Auth.Application.Features.Users.Commands.ResendEmail;
 using InnoClinic.Auth.Application.Features.Users.Commands.SignIn;
 using InnoClinic.Auth.Application.Features.Users.Commands.SignOut;
 using InnoClinic.Auth.Application.Features.Users.Commands.SignUp;
-using InnoClinic.Auth.Application.Features.Users.Commands.ConfirmEmail;
-using InnoClinic.Auth.Application.Features.Users.Commands.ResendEmail;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,28 @@ public class AuthController : ControllerBase
 
         return Ok("Registration successuful!!!");
     }
+
+
+    [HttpPost("create-doctor")]
+    public async Task<IActionResult> CreateDoctor([FromBody] CreateDoctorCommand command, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var accountId = await _mediator.Send(command, cancellationToken);
+            return Ok(new { AccountId = accountId, Message = "Doctor account created successfully." });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "An unexpected error occurred.", Details = ex.Message });
+        }
+    }
+
+
+
 
     [HttpGet("confirm-email")]
 

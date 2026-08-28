@@ -33,7 +33,6 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 // Add services to the container.
 
 
-builder.Services.AddValidatorsFromAssembly(typeof(CreateDoctorsCommandValidator).Assembly);
 
 
 builder.Services.AddControllers();
@@ -57,21 +56,24 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddMassTransit(x =>
 {
-
     x.AddConsumer<SpecializationCreatedConsumer>();
     x.AddConsumer<DoctorAccountCreatedConsumer>();
 
-    x.UsingRabbitMq((context, sfg) =>
+    x.UsingRabbitMq((context, cfg) =>
     {
-        sfg.Host("localhost", "/", h =>
+        var rabbitHost = builder.Configuration["RabbitMQ:Host"] ?? "localhost";
+        var rabbitVHost = builder.Configuration["RabbitMQ:VirtualHost"] ?? "/";
+        var rabbitUser = builder.Configuration["RabbitMQ:Username"] ?? "guest";
+        var rabbitPass = builder.Configuration["RabbitMQ:Password"] ?? "guest";
+
+        cfg.Host(rabbitHost, rabbitVHost, h =>
         {
-            h.Username("guest");
-            h.Password("guest");
+            h.Username(rabbitUser);
+            h.Password(rabbitPass);
         });
 
-        sfg.ConfigureEndpoints(context);
+        cfg.ConfigureEndpoints(context);
     });
-
 });
 
 
