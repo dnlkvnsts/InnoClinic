@@ -30,10 +30,15 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
 
         public async Task<IEnumerable<DoctorDto>> Handle(GetDoctorsQuery request, CancellationToken cancellationToken)
         {
-            var doctors = _doctorRepository.GetDoctorsQuery().Where(d => d.Status == "At work").ToList();
+           
+            var doctors = await _doctorRepository.GetDoctorsAsync(
+                request.FullName,
+                request.SpecializationId,
+                cancellationToken);
 
-            var currentYear = System.DateTime.UtcNow.Year;
+            var currentYear = DateTime.UtcNow.Year;
 
+            
             foreach (var doctor in doctors)
             {
                 await _publishEndpoint.Publish(new DoctorCreated(
@@ -44,17 +49,17 @@ namespace InnoClinic.Profiles.Application.Features.Doctors.Queries.GetDoctors
                 ), cancellationToken);
             }
 
-
-            var result = query.Select(d => new DoctorDto(
-                    d.PhotoUrl,
-                    d.FirstName,
-                    d.LastName,
-                    d.MiddleName,
-                    d.SpecializationId,
-                    d.Specialization.SpecializationName,
-                    currentYear - d.CareerStartYear + 1,
-                    d.OfficeAddress
-                )).ToList();
+           
+            var result = doctors.Select(d => new DoctorDto(
+                d.PhotoUrl,
+                d.FirstName,
+                d.LastName,
+                d.MiddleName,
+                d.SpecializationId,
+                d.Specialization?.SpecializationName ?? string.Empty,
+                currentYear - d.CareerStartYear + 1,
+                d.OfficeAddress
+            )).ToList();
 
             return result;
         }

@@ -46,14 +46,6 @@ namespace InnoClinic.Profiles.Api.Controllers
 
 
 
-        [HttpPost("createpatient")]
-        public async Task<IActionResult> CreatePatient([FromBody] CreatePatientCommand request, CancellationToken cancellationToken)
-        {
-            Guid patientId = await _mediator.Send(request, cancellationToken);
-            return Ok(new { Id = patientId });
-
-        }
-
         [HttpPost("check-match")]
         public async Task<IActionResult> CheckMatch([FromBody] FindPatientQuery query, CancellationToken cancellationToken)
         {
