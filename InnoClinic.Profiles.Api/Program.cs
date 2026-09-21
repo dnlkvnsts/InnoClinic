@@ -8,18 +8,11 @@ using InnoClinic.Profiles.Infrastructure.Persistence;
 using InnoClinic.Profiles.Infrastructure.Repositories;
 using InnoClinic.Shared.Contracts;
 using MassTransit;
-using FluentValidation;
-using InnoClinic.Profiles.Application.Validators;
-using InnoClinic.Profiles.Application.Behaviors;
+
 
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-using MediatR;
-using MassTransit;
-using FluentValidation;
-using InnoClinic.Profiles.Application.Validators;
-using InnoClinic.Profiles.Application.Behaviors;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -88,13 +81,11 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreatePatientValidator>();
 
 
 
-builder.Services.AddValidatorsFromAssemblyContaining<CreatePatientValidator>();
-
 
 var app = builder.Build();
 
 
-app.UseMiddleware<InnoClinic.Profiles.Api.Middleware.ValidationExceptionMiddleware>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

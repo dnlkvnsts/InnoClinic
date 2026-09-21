@@ -150,7 +150,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Id = new Guid("10000000-0000-0000-0000-000000000001"),
                             AccountId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
                             DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             FirstName = "Emily",
@@ -162,7 +162,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
+                            Id = new Guid("20000000-0000-0000-0000-000000000002"),
                             DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             FirstName = "James",
                             IsLinkedToAccount = false,
@@ -186,35 +186,6 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Doctors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
-                            CareerStartYear = 2015,
-                            FirstName = "John",
-                            LastName = "Doe",
-                            MiddleName = "Robert",
-                            OfficeAddress = "123 Health Ave, Room 101",
-                            PhotoUrl = "https://example.com/photos/johndoe.jpg",
-                            Specialization = "Cardiologist",
-                            Status = "At work",
-                            UserId = "user-guid-1"
-                        },
-                        new
-                        {
-                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
-                            CareerStartYear = 2018,
-                            FirstName = "Alice",
-                            LastName = "Smith",
-                            MiddleName = "Jane",
-                            OfficeAddress = "123 Health Ave, Room 205",
-                            PhotoUrl = "https://example.com/photos/alicesmith.jpg",
-                            Specialization = "Pediatrician",
-                            Status = "At work",
-                            UserId = "user-guid-2"
-                        });
                     b.ToTable("Specializations");
 
                     b.HasData(
@@ -252,67 +223,6 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
             modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Specialization", b =>
                 {
                     b.Navigation("Doctors");
-                });
-
-            modelBuilder.Entity("InnoClinic.Profiles.Domain.Entities.Patient", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsLinkedToAccount")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Patients");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
-                            AccountId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                            DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FirstName = "Emily",
-                            IsLinkedToAccount = true,
-                            LastName = "Brown",
-                            MiddleName = "Grace",
-                            Phone = "+1234567890",
-                            PhotoUrl = "https://example.com/photos/emilybrown.jpg"
-                        },
-                        new
-                        {
-                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
-                            DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FirstName = "James",
-                            IsLinkedToAccount = false,
-                            LastName = "Wilson",
-                            Phone = "+10987654321"
-                        });
                 });
 #pragma warning restore 612, 618
         }
