@@ -22,7 +22,6 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                 .HasForeignKey(d => d.SpecializationId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-     
             var therapyId = Guid.Parse("11111111-1111-1111-1111-111111111111");
             var surgeryId = Guid.Parse("22222222-2222-2222-2222-222222222222");
             var cardiologyId = Guid.Parse("33333333-3333-3333-3333-333333333333");
@@ -48,9 +47,7 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                 }
             );
 
-          
             modelBuilder.Entity<Doctor>().HasData(
-               
                 new Doctor
                 {
                     Id = Guid.Parse("bb22bb22-2222-2222-2222-222222222222"),
@@ -65,7 +62,6 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     OfficeAddress = "Minsk, office 405",
                     AccountId = Guid.Parse("55555555-5555-5555-5555-555555555555")
                 },
-               
                 new Doctor
                 {
                     Id = Guid.Parse("cc33cc33-3333-3333-3333-333333333333"),
@@ -80,7 +76,6 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                     OfficeAddress = "Minsk, office 302",
                     AccountId = Guid.Parse("66666666-6666-6666-6666-666666666666")
                 },
-               
                 new Doctor
                 {
                     Id = Guid.Parse("dd44dd44-4444-4444-4444-444444444444"),
@@ -97,11 +92,11 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                 }
             );
 
-            
             modelBuilder.Entity<Patient>().HasData(
                 new Patient
                 {
-                    Id = Guid.Parse("33333333-3333-3333-3333-333333333333"),
+                   
+                    Id = Guid.Parse("10000000-0000-0000-0000-000000000001"),
                     FirstName = "Emily",
                     LastName = "Brown",
                     MiddleName = "Grace",
@@ -113,7 +108,8 @@ namespace InnoClinic.Profiles.Infrastructure.Persistence
                 },
                 new Patient
                 {
-                    Id = Guid.Parse("44444444-4444-4444-4444-444444444444"),
+                    
+                    Id = Guid.Parse("20000000-0000-0000-0000-000000000002"),
                     FirstName = "James",
                     LastName = "Wilson",
                     MiddleName = null,

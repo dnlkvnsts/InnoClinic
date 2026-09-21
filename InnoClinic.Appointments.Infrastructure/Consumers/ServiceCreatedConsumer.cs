@@ -4,7 +4,6 @@ using InnoClinic.Appointments.Infrastructure.Persistence;
 using MassTransit;
 
 
-
 namespace InnoClinic.Appointments.Infrastructure.Consumers
 {
     public class ServiceCreatedConsumer : IConsumer<ServiceCreated>

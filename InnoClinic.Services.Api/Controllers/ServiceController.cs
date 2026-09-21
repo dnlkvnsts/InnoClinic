@@ -17,7 +17,7 @@ namespace InnoClinic.Services.Api.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetDoctors(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetServices(CancellationToken cancellationToken)
         {
 
             var query = new GetServicesQuery();

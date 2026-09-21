@@ -150,7 +150,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Id = new Guid("10000000-0000-0000-0000-000000000001"),
                             AccountId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
                             DateOfBirth = new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             FirstName = "Emily",
@@ -162,7 +162,7 @@ namespace InnoClinic.Profiles.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
+                            Id = new Guid("20000000-0000-0000-0000-000000000002"),
                             DateOfBirth = new DateTime(1988, 11, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             FirstName = "James",
                             IsLinkedToAccount = false,

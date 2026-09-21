@@ -14,12 +14,12 @@ namespace InnoClinic.Profiles.Application.Features.Patients.Queries.GetPatients
 
         private readonly IPatientRepository _patientRepository;
         private readonly IPublishEndpoint _publishEndpoint;
-
+     
 
 
         public GetPatientsQueryHandler(IPatientRepository patientRepository, IPublishEndpoint publishEndpoint)
         {
-            _patientRepository = patientRepository;
+           _patientRepository = patientRepository;
             _publishEndpoint = publishEndpoint;
         }
 
